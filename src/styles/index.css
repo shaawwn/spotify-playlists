@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  color: #e9edf7;
+}
+:root {
+  --background-offblack: #433F3F;
+  --background-main: #3D485C;
+  background-color: var(--background-main);
+}
+
+body, html {
+  background: linear-gradient(var(--gradient-bg-color), rgb(0,0,0));
+  /* Ok this was pretty cool, the gradient will gradually increase as you scroll instead of all at once */
+  background-attachment: fixed;
+  color: white;
+  /* height: 100%; */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* || VIEWS */
+
+.view {
+  /* min-height: 100vh; */
+
+}
+
+.loading {
+  /* background-color: var(--background-main); */
+}
+
+.home {
+  position: relative;
+  flex: 1;
+  
+}
+
+.dashboard {
+  background-color: var(--background-main);
+  /* min-height: 100vh; */
+  position: relative;
+}
+/* ||  */
+
+.login {
+  background-color: var(--background-main);
+  height: 100vh;
+}
+/* || BUTTONS */
+
+.btn {
+  border-radius: 5px;
+}
+
+.login-btn{
+  background-color: green;
+  display: block;
+  width: 150px;
+  height: 50px;
+  padding: 10px;
+  text-align: center;
+  /* border-radius: 5px; */
+  color: black;
+  font-weight: bold;
+  line-height: 35px;
+  font-size: 20px;
+  text-decoration: none;
+  margin: auto;
+}
+
+/* || Containers */
+
+
+
+.container {
+  position: relative;
+  display: flex;
+  min-width: 100%;
+  height: 93vh;
+  margin: 5px;
+  /* background-color: purple; */
+}
+
+.container-view {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 5px;
+  /* background-color: var(--background-offblack); */
+  /* background-color: yellow; */
+}

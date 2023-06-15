@@ -1,0 +1,25 @@
+import {useState, useEffect} from 'react';
+
+// there is stuff with shelf card that I think I want to seperate from grid card
+import ShelfCard from '../components/ShelfCard';
+
+
+function Shelf({playlists}) {
+
+    function displayShelf() {
+        return(
+            <>
+                {playlists.map((playlist) => 
+                    <ShelfCard key={playlist.id} playlist={playlist}/>    
+                )}
+            </>
+        )
+    }
+    return(
+        <div className="shelf">
+            {playlists ? displayShelf() : <h1>No shelf items!</h1>}
+        </div>
+    )
+}
+
+export default Shelf

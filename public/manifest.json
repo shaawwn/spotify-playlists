@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Spotify Playlists",
+  "name": "Playlists - Simpllified Spotify playlist manager",
   "icons": [
     {
       "src": "favicon.ico",
