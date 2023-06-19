@@ -4,13 +4,17 @@ import {useState, useEffect} from 'react';
 import ShelfCard from '../components/ShelfCard';
 
 
-function Shelf({playlists}) {
+function Shelf({playlists, toggleView}) {
 
     function displayShelf() {
         return(
             <>
                 {playlists.map((playlist) => 
-                    <ShelfCard key={playlist.id} playlist={playlist}/>    
+                    <ShelfCard 
+                        key={playlist.id} 
+                        playlist={playlist}
+                        toggleView={toggleView}
+                        />    
                 )}
             </>
         )

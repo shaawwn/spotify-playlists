@@ -19,9 +19,14 @@ function usePlaylists(accessToken) {
                 }
             }).then((response) => response.json())
             .then((data) => {
-                console.log("SCROLL DATA", data)
-                setPlaylists(prevPlaylists => prevPlaylists.concat(data.items))
+                // if(data.next === null) {
+                //     // last page
+
+                // }
+                // console.log("SCROLL DATA", data)
                 pagination.current = data.next
+                setPlaylists(prevPlaylists => prevPlaylists.concat(data.items))
+                // pagination.current = data.next
             })
         }
 
@@ -35,6 +40,7 @@ function usePlaylists(accessToken) {
             }
         }).then((response) => response.json())
         .then((data) => {
+            // console.log("DATA", data.items)
             setPlaylists(data.items)
             pagination.current = data.next
         })

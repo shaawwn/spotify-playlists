@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import NavbarMenu from '../components/NavbarMenu'
 
 
-function Navbar({username}) {
+function Navbar({username, toggleView, toggleSearchbar}) {
 
     function greeting() {
         // check time of day
@@ -13,7 +13,10 @@ function Navbar({username}) {
     return(
         <div className="navbar">
             <Greeting username={username} />
-            <NavbarMenu />
+            <NavbarMenu 
+                toggleView={toggleView}
+                toggleSearchbar={toggleSearchbar}
+            />
         </div>
     )
 }

@@ -2,7 +2,9 @@
     --background-offblack: #433F3F;
     --background-black: #332f2f;
     --background-black-hover: #4c4e53;
+    --background-contrast: #d1d4dd;
     --font-main: #e9edf7;
+    /* --font-input:  */
 }
 
 
@@ -35,11 +37,13 @@
 
 .grid {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 7px;
-    width: 95%;
+    width: 90%;
     margin: auto;
     margin-bottom: 100px;
+    background-color: var(--background-offblack);
     /* width: 100%; */
 }
 
@@ -81,26 +85,51 @@
 /* || Shelf */
 
 .shelf {
-    margin-top: 7vh;
+    /* margin-top: 8vh; */
     height: 300px;
     display: flex;
     justify-content: space-evenly;
     padding: 10px;
-    background-color: var(--background-black);
+    background-color: var(--background-offblack);
     z-index: 5;
 }
 
 .shelf-card {
-    width: 175px;
-    height: 200px;
+    width: 150px;
+    height: 180px;
     padding: 5px;
     border-radius: 5px;
     background-color: var(--background-black);
-}
-.shelf-card:hover {
-    background-color: var(--background-black-hover);
+    transition: all 0.5s;
 }
 
+.shelf-card-image {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.shelf-card:hover {
+    background-color: var(--background-black-hover);
+    transform: scale(1.4) translateY(25px);
+    box-shadow: 1px 1px 10px rgba(40, 40,40, 0.5);
+    z-index: 11;
+}
+
+
+/* || Search */
+
+.search-input {
+    color: var(--background-black);
+    border-radius: 5px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    line-height:2em;
+    font-size: 18px
+}
 
 /* || Misc */
 .greeting {

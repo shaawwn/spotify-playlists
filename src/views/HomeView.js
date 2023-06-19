@@ -4,11 +4,17 @@ import Grid from '../components/Grid'
 
 
 
-function HomeView({playlists, scroll}) {
+function HomeView({playlists, scroll, toggleView}) {
 
     return(
-        <div className="home">
-            {playlists? <Grid playlists={playlists} scroll={scroll}/> : <h1>No playlists!</h1>}
+        <div className="home" data-testid="home">
+            {playlists? 
+                <Grid 
+                    playlists={playlists} 
+                    scroll={scroll}
+                    toggleView={toggleView}
+                    /> 
+                : <h1>No playlists!</h1>}
         </div>
     )
 }
