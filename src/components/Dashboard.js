@@ -5,6 +5,7 @@ import useAuth from '../hooks/useAuth';
 import usePlaylist from '../hooks/usePlaylist';
 import usePlaylists from '../hooks/usePlaylists'
 import useSearch from '../hooks/useSearch';
+import useHistory from '../hooks/useHistory'
 
 //components
 import Navbar from '../components/Navbar'
