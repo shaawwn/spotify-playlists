@@ -29,15 +29,25 @@ function Dashboard({code}) {
     // const [playlist] = usePlaylist(accessToken, playlistID) // my awesome playlist for now
     const [playlists, scroll] = usePlaylists(accessToken)
     const [view, setView] = useState('home') // home by default
-    const [searchbar, setSearchbar] = useState('flex') // toggle searchbar
+    const [searchbar, setSearchbar] = useState('none') // toggle searchbar
+    const [searchState, setSearchState] = useState(false) // use this to reset search
 
     function toggleSearchbar() {
         // toggle search bar on/off
-        console.log("Search toggle")
         if(searchbar === 'flex') {
             setSearchbar('none')
+            _toggleSearchState()
         } else if(searchbar === 'none') {
             setSearchbar('flex')
+            _toggleSearchState()
+        }
+    }
+
+    function _toggleSearchState() {
+        if(searchState === true) {
+            setSearchState(false)
+        } else if(searchState === false) {
+            setSearchState(true)
         }
     }
     function toggleView(view, id) {
@@ -126,6 +136,7 @@ function Dashboard({code}) {
                     <SearchSidebar 
                         visible={searchbar}
                         accessToken={accessToken}
+                        searchState={searchState}
                     />
                 </div>
             </>

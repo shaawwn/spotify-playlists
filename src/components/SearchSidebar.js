@@ -5,7 +5,7 @@ import SearchInput from '../components/SearchInput';
 import SearchResults from '../components/SearchResults';
 
 
-function SearchSidebar({visible, accessToken}) {
+function SearchSidebar({visible, accessToken, searchState, playlistID}) {
 
     // const [toggleResults, setToggleResults] = useState(false) // results false by default
     const [search, searchResult, setSearchResult] = useSearch(accessToken) // from the searchResult can get ALL search results since it includes the pagination url
@@ -52,7 +52,7 @@ function SearchSidebar({visible, accessToken}) {
             console.log("No more results")
             return false
         }
-        console.log("handling pagination", pagination.current)
+        // console.log("handling pagination", pagination.current)
         // make a fetch  to get the next round of TRACKS
 
         fetch(pagination.current, {
@@ -61,7 +61,7 @@ function SearchSidebar({visible, accessToken}) {
             }
         }).then((response) => response.json())
         .then((data) => {
-            console.log("Next tracks", data)
+            // console.log("Next tracks", data)
             pagination.current = data.tracks.next
             // set pagination, set new tracks
             setTracks(prevTracks => prevTracks.concat(data.tracks.items))
@@ -96,10 +96,18 @@ function SearchSidebar({visible, accessToken}) {
         }
     }, [searchResult])
 
+    useEffect(() => {
+        if(searchState === false) {
+            setSearchResult()
+            // reset input to none
+        }
+    }, [searchState])
+
     return(
         <div className={`search-sidebar`} style={{display: visible}}>
             <SearchInput 
                 handleSearch={handleSearch}
+                searchState={searchState}
             />
             {displayResult()}
             {/* {searchResult !== undefined ? <SearchResults searchResult={searchResult} /> : <span>No results</span>} */}

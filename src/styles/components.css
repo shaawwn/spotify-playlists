@@ -3,7 +3,11 @@
     --background-black: #332f2f;
     --background-black-hover: #4c4e53;
     --background-contrast: #d1d4dd;
+    --button-main: #70e882;
+    --button-main-hover: #7cc687;
     --font-main: #e9edf7;
+    --font-dark: #332f2f;
+    --font-secondary: #332f2f;
     /* --font-input:  */
 }
 
@@ -131,6 +135,45 @@
     font-size: 18px
 }
 
+.search-row {
+    /* height: 3rem; */
+}
+.search-row-details {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.search-row-details-name {
+    font-size: 18px;
+    color: var(--font-dark);
+    /* background-color: red; */
+}
+
+.search-row-details-artist {
+    font-size: 12px;
+    color: var(--font-secondary);
+    /* background-color: blue; */
+}
+.search-row-btn {
+    background-color: var(--button-main);
+    border-radius: 5px;
+    padding: 3px;
+    color: var(--font-dark);
+    margin: 3px;
+    margin-right: 10px;
+    transition: all 0.2s
+}
+
+.search-row-btn:hover {
+    /* background-color: var(--button-main-hover); */
+    /* background-color: var(--background-black-hover); */
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 1px 1px 5px rgba(40, 40,40, 0.5);
+    /* z-index: 11; */
+
+}
 /* || Misc */
 .greeting {
     font-size: 32px;
