@@ -11,6 +11,7 @@ import useHistory from '../hooks/useHistory'
 import Navbar from '../components/Navbar'
 import Shelf from '../components/Shelf'
 import SearchSidebar from '../components/SearchSidebar'
+import HistoryNavigator from '../components/HistoryNavigator';
 
 // views
 import HomeView from '../views/HomeView';
@@ -30,12 +31,27 @@ function Dashboard({code}) {
     const [playlist, addTrack, removeTrack] = usePlaylist(accessToken, playlistID)
     const [playlists, scroll] = usePlaylists(accessToken)
     const [activePlaylist, setActivePlaylist] = usePlaylist(accessToken, playlistID)
+    const history = useHistory()
+
     const [view, setView] = useState('home') // home by default
     const [searchbar, setSearchbar] = useState('none') // toggle searchbar
     const [searchState, setSearchState] = useState(false) // use this to reset search
+    const [refresh, setRefresh] = useState(false)
 
 
+    function updateHistory(page, logHistory=true) {
+        if(logHistory === true) {
+            history.addPage(page)  // page = {'playlist': <playlistID>}   
+        } // else do not update history
+    }
 
+    function _refresh() {
+        if(refresh === true) {
+            setRefresh(false)
+        } else if(refresh === false) {
+            setRefresh(true)
+        }
+    }
     function toggleSearchbar() {
         // toggle search bar on/off
         if(searchbar === 'flex') {
@@ -59,10 +75,12 @@ function Dashboard({code}) {
         console.log(view, id)
         if(view === 'playlist') {
             setPlaylistID(id)
+            updateHistory(['playlist', id], true)
         } else if(view === 'home') {
             setPlaylistID()
         }
         setView(view)
+        // _refresh()
     }
 
     function displayView() {
@@ -139,6 +157,10 @@ function Dashboard({code}) {
                     />
                 <div className="container">
                     <div className="container-view">
+                        {/* <HistoryNavigator 
+                            history={history}
+                            toggleView={toggleView}
+                            /> */}
                         <Shelf 
                             playlists={playlists.slice(0, 5)}
                             toggleView={toggleView}
