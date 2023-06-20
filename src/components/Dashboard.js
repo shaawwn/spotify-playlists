@@ -26,11 +26,14 @@ function Dashboard({code}) {
     const accessToken = useAuth(code)
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
-    // const [playlist] = usePlaylist(accessToken, playlistID) // my awesome playlist for now
+    const [playlist] = usePlaylist(accessToken, playlistID) // my awesome playlist for now
     const [playlists, scroll] = usePlaylists(accessToken)
+    const [activePlaylist, setActivePlaylist] = usePlaylist(accessToken, playlistID)
     const [view, setView] = useState('home') // home by default
     const [searchbar, setSearchbar] = useState('none') // toggle searchbar
     const [searchState, setSearchState] = useState(false) // use this to reset search
+
+
 
     function toggleSearchbar() {
         // toggle search bar on/off
@@ -50,6 +53,7 @@ function Dashboard({code}) {
             setSearchState(true)
         }
     }
+
     function toggleView(view, id) {
         console.log(view, id)
         if(view === 'playlist') {
@@ -66,6 +70,8 @@ function Dashboard({code}) {
                 <PlaylistView 
                     accessToken={accessToken}
                     playlistID={playlistID}
+                    // playlists
+                    // tracks
                 />
             )
         } else if(view === 'home') {
@@ -109,7 +115,12 @@ function Dashboard({code}) {
     // }, [user])
 
     useEffect(() => {
-
+        // console.log("playlists", playlists)
+        // if(playlists.length > 0) {
+        //     // set a playlists so that when you add songs, there is no error, OR, just add error handling when you try to add songs
+        //     setPlaylistID(playlists[0].id)
+        // }
+        
     }, [playlists])
 
     useEffect(() => {
@@ -137,6 +148,7 @@ function Dashboard({code}) {
                         visible={searchbar}
                         accessToken={accessToken}
                         searchState={searchState}
+                        playlistID={playlistID}
                     />
                 </div>
             </>

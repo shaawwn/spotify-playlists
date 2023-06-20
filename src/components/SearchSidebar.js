@@ -67,6 +67,7 @@ function SearchSidebar({visible, accessToken, searchState, playlistID}) {
             setTracks(prevTracks => prevTracks.concat(data.tracks.items))
         })
     }
+
     function scroll() {
         // console.log("Scrolling to new tracks", pagination.current)
         // make a fetch to the API to get the new tracks and concat onto the list of tracks, but need to then pass them onto search reults with a re-render
@@ -81,6 +82,7 @@ function SearchSidebar({visible, accessToken, searchState, playlistID}) {
                 <SearchResults 
                     tracks={tracks}
                     scroll={scroll}
+                    playlistID={playlistID}
                 />
             )
         }

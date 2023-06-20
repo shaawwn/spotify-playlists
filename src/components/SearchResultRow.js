@@ -1,9 +1,9 @@
 import {truncateText} from '../utils/formatting' 
 
-function SearchResultRow({track, innerRef}) {
+function SearchResultRow({track, innerRef, playlistID}) {
 
     function handleButtonClick(id) {
-        console.log("Adding track to playlist", id)
+        console.log("Adding track to playlist", id, playlistID)
     }
     return(
         <tr className="search-row" ref={innerRef}>
