@@ -2,8 +2,7 @@ import {useState, useEffect, useRef, useCallback} from 'react';
 
 import SearchResultRow from '../components/SearchResultRow'
 
-function SearchResults({tracks, scroll}) {
-    // console.log("Search results on component", searchResult)
+function SearchResults({tracks, scroll, addTrack, removeTrack}) {
 
     const [loading, setLoading] = useState(true) // after content has loaded set to false
 
@@ -33,6 +32,8 @@ function SearchResults({tracks, scroll}) {
                                 track={track}
                                 innerRef={lastSearchElement}
                                 key={track.id}
+                                addTrack={addTrack}
+                                removeTrack={removeTrack}
                             />
                         )
                     } else {
@@ -40,6 +41,8 @@ function SearchResults({tracks, scroll}) {
                             <SearchResultRow 
                                 track={track}
                                 key={track.id}
+                                addTrack={addTrack}
+                                removeTrack={removeTrack}
                             />
                         )
                     }

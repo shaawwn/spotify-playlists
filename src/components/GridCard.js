@@ -34,8 +34,11 @@ function GridCard({playlist, innerRef, toggleView}) {
 
     function addPlaylistCard() {
         
+        function createPlaylist() {
+            console.log("Creating playlist")
+        }
         return(
-            <div className="grid-card" >
+            <div className="grid-card" onClick={createPlaylist} >
                 <FontAwesomeIcon icon={faPlus} />
             </div>
         )

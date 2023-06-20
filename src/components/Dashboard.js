@@ -26,7 +26,7 @@ function Dashboard({code}) {
     const accessToken = useAuth(code)
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
-    // const [playlist] = usePlaylist(accessToken, playlistID) // my awesome playlist for now
+    const [playlist, addTrack, removeTrack] = usePlaylist(accessToken, playlistID)
     const [playlists, scroll] = usePlaylists(accessToken)
     const [view, setView] = useState('home') // home by default
     const [searchbar, setSearchbar] = useState('none') // toggle searchbar
@@ -50,6 +50,7 @@ function Dashboard({code}) {
             setSearchState(true)
         }
     }
+
     function toggleView(view, id) {
         console.log(view, id)
         if(view === 'playlist') {
@@ -66,6 +67,8 @@ function Dashboard({code}) {
                 <PlaylistView 
                     accessToken={accessToken}
                     playlistID={playlistID}
+                    playlist={playlist}
+                    removeTrack={removeTrack}
                 />
             )
         } else if(view === 'home') {
@@ -113,7 +116,7 @@ function Dashboard({code}) {
     }, [playlists])
 
     useEffect(() => {
-
+        // console.log("PLAYLIST IN DASHBOARD", playlist)
     }, [playlistID])
 
     return(
@@ -137,6 +140,9 @@ function Dashboard({code}) {
                         visible={searchbar}
                         accessToken={accessToken}
                         searchState={searchState}
+                        addTrack={addTrack}
+                        removeTrack={removeTrack}
+                        
                     />
                 </div>
             </>

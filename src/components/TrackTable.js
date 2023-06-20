@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import TrackTableRow from '../components/TrackTableRow'
 
 
-function TrackTable({items}) {
+function TrackTable({items, removeTrack}) {
 
     // console.log("Table items", items[0])
 
@@ -14,6 +14,7 @@ function TrackTable({items}) {
                     <TrackTableRow 
                         key={item.track.id}
                         item={item.track} 
+                        removeTrack={removeTrack}
                         />
                 )}
             </tbody>
