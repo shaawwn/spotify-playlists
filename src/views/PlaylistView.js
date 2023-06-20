@@ -5,9 +5,9 @@ import TrackTable from '../components/TrackTable';
 import PlaylistBanner from '../components/PlaylistBanner';
 
 
-function PlaylistView({accessToken, playlistID}) {
-
-    const [playlist] = usePlaylist(accessToken, playlistID)
+function PlaylistView({accessToken, playlistID, playlist, removeTrack}) {
+    // console.log("Playlist and tracks", playlist)
+    // const [playlist] = usePlaylist(accessToken, playlistID)
     // console.log("Playlist view", playlistID, playlist.id)
 
     useEffect(() => {
@@ -25,6 +25,7 @@ function PlaylistView({accessToken, playlistID}) {
             />
             <TrackTable 
                 items={playlist.tracks.items}
+                removeTrack={removeTrack}
             />
             </>
         :<span>No playlist loaded</span>}

@@ -1,8 +1,14 @@
 import {useState, useEffet} from 'react';
 import {msToMinutesAndSeconds} from '../utils/formatting'
-function TrackTableRow({item}) {
-    // console.log("ROW ITEM", item)
 
+
+function TrackTableRow({item, removeTrack}) {
+    // console.log("ROW ITEM", item)
+    
+    function handleButtonClick(id) {
+        // console.log("Removing track", id)
+        removeTrack(id)
+    }
     function displayRow() {
         return(
             <tr>
@@ -10,6 +16,9 @@ function TrackTableRow({item}) {
                 <td>{item.artists[0].name}</td>
                 <td>{item.album.name}</td>
                 <td>{msToMinutesAndSeconds(item.duration_ms)}</td>
+                <td>
+                    <button className="search-row-btn" onClick={() => handleButtonClick(item.id)}>Remove</button>
+                </td>
             </tr>
         )
     }

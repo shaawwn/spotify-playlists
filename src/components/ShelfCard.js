@@ -4,7 +4,7 @@ import {truncateText} from '../utils/formatting';
 function ShelfCard({playlist, toggleView}) {
 
     function handleClick() {
-        console.log("Clicking", playlist.id)
+        // console.log("Clicking", playlist.id)
         // setPlaylistID(playlist.id)
         toggleView('playlist', playlist.id)
     }
