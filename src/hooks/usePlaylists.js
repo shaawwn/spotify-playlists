@@ -1,9 +1,11 @@
 import {useState, useEffect, useRef} from 'react';
 
 // playlist objects include ALL data for that playlist, so no need to make a fetch to get individual playlist when can just use the playlist object (may still need to use pagination though for track lists)
-function usePlaylists(accessToken) {
+function usePlaylists(accessToken, refresh) {
 
     const [playlists, setPlaylists] = useState([])
+    const [numPlaylists, setNumPlaylists] = useState(0)
+    const [reload, setReload] = useState(false)
     const pagination = useRef()
 
     function scroll() {
@@ -33,6 +35,13 @@ function usePlaylists(accessToken) {
         // console.log("Scrolling from hook", pagination)
     }
 
+    function _reload() {
+        if(reload === true) {
+            setReload(false)
+        } else if(reload === false) {
+            setReload(true)
+        }
+    }
     function getPlaylists() {
         fetch(`https://api.spotify.com/v1/me/playlists`, {
             headers: {
@@ -41,19 +50,31 @@ function usePlaylists(accessToken) {
         }).then((response) => response.json())
         .then((data) => {
             // console.log("DATA", data.items)
+            // console.log("Users playlist data", data.total)
             setPlaylists(data.items)
+            setNumPlaylists(data.total)
             pagination.current = data.next
         })
 
     }
 
+
     useEffect(() => {
         if(accessToken) {
+            console.log("Loading playlists init, refresh value: ", refresh)
             getPlaylists()
         } 
     }, [accessToken])
 
-    return [playlists, scroll]
+    useEffect(() => {
+        // by default, refresh is set to false, only after that first load should it be true
+        if(accessToken) {
+            console.log("Refresh playlists")
+            getPlaylists()
+        }
+    }, [refresh])
+
+    return [playlists, scroll, numPlaylists]
 }
 
 export default usePlaylists

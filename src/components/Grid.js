@@ -1,9 +1,9 @@
 import {useState, useEffect, useRef, useCallback} from 'react';
 
 import GridCard from '../components/GridCard';
+import AddPlaylistCard from '../components/AddPlaylistCard'
 
-
-function Grid({playlists, scroll, toggleView}) {
+function Grid({playlists, scroll, toggleView, createPlaylist}) {
 
     const [loading, setLoading] = useState(true) // after content has loaded set to false
 
@@ -56,7 +56,12 @@ function Grid({playlists, scroll, toggleView}) {
     return(
         <div className="grid-container">
             <div className="grid">
-                <GridCard playlist={null}/>
+                {/* <GridCard 
+                    playlist={null} createPlaylist={createPlaylist}
+                    /> */}
+                <AddPlaylistCard 
+                    createPlaylist={createPlaylist} 
+                    />
                 {playlists.length > 0 ? displayGrid() : <h1>No playlists!</h1> }
                 {playlists % 5 !== 0 ? 
                     // add dummys

@@ -3,7 +3,11 @@
 function PlaylistBanner({name, owner, numTracks}) {
 
     return(
-        <p className="playlist-banner-name">{name} by {owner} {numTracks} tracks</p>
+        <div className="playlist-banner">
+            <p className="playlist-banner-name">{name} by {owner} {numTracks} tracks</p>
+            <button className="playlist-banner-btn" >Edit playlist details</button>
+        </div>
+        
     )
 }
 

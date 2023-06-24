@@ -17,7 +17,7 @@ function SearchInput({handleSearch, searchState}) {
         )
     }
     useEffect(() => {
-        console.log("State change in input")
+
     }, [searchState])
 
     return(

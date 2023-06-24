@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 // hooks
 import useAuth from '../hooks/useAuth';
@@ -29,9 +29,14 @@ function Dashboard({code}) {
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
     const [playlist, addTrack, removeTrack] = usePlaylist(accessToken, playlistID)
-    const [playlists, scroll] = usePlaylists(accessToken)
+
+    // playlists 
+    const refreshPlaylists = useRef(false)
+    const [playlists, scroll, numPlaylists] = usePlaylists(accessToken, refreshPlaylists.current)
+
     const [activePlaylist, setActivePlaylist] = usePlaylist(accessToken, playlistID)
     const history = useHistory()
+
 
     const [view, setView] = useState('home') // home by default
     const [searchbar, setSearchbar] = useState('none') // toggle searchbar
@@ -52,6 +57,43 @@ function Dashboard({code}) {
             setRefresh(true)
         }
     }
+
+    function _refreshPlaylists() {
+        if(refreshPlaylists.current === false) {
+            refreshPlaylists.current = true
+        } else if(refreshPlaylists.current === true) {
+            refreshPlaylists.current = false
+        }
+    }
+    function createPlaylist() {
+
+        // create a new playlist with a defauly name My Playlist #whatever, take users total playlists and add + 1
+        const newPlaylist = {
+            "name": `My Playlist ${numPlaylists + 1}`,
+            "description": 'My new awesome playlist',
+            "public": true,
+            "collaborative": false
+        }
+        console.log("Creating: ", newPlaylist)
+
+        fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(newPlaylist)
+        }).then((response) => response.json())
+        .then((data) => {
+            // console.log("Playlist created", data)
+            toggleView('playlist', data.id)
+            _refreshPlaylists()
+            _refresh()
+        }).catch((error) => {
+            console.log("error creating playlist", error)
+        })
+    }
+
+
     function toggleSearchbar() {
         // toggle search bar on/off
         if(searchbar === 'flex') {
@@ -99,6 +141,7 @@ function Dashboard({code}) {
                     playlists={playlists}
                     scroll={scroll}
                     toggleView={toggleView}
+                    createPlaylist={createPlaylist}
                 /> 
             )
 

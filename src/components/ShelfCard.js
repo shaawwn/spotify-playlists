@@ -9,12 +9,31 @@ function ShelfCard({playlist, toggleView}) {
         toggleView('playlist', playlist.id)
     }
     
+    // function displayCard() {
+    //     return(
+    //         <div className="shelf-card" onClick={handleClick}>
+                
+    //             <img src={playlist.images[0].url} className="shelf-card-image"/>
+    //             <p className="shelf-card-name">{truncateText(playlist.name)}</p>
+    //         </div>
+    //     )
+    // }
+
     function displayCard() {
+        // console.log("PLAYLISTS", playlist.images)
         return(
             <div className="shelf-card" onClick={handleClick}>
-                <img src={playlist.images[0].url} className="shelf-card-image"/>
-                <p className="shelf-card-name">{truncateText(playlist.name)}</p>
-            </div>
+                {playlist && playlist.images.length > 0 ? 
+                    <img 
+                        src={playlist.images[0].url} 
+                        className="shelf-card-image" 
+                        // ref={innerRef}
+                        alt={playlist.name}
+                    /> 
+                    :<p>No image</p>}
+            {/* <img src={playlist.images[0].url} className="grid-card-image"/> */}
+            <p className="shelf-card-name">{truncateText(playlist.name)}</p>
+        </div>
         )
     }
     return(

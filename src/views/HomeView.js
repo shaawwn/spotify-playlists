@@ -4,7 +4,7 @@ import Grid from '../components/Grid'
 
 
 
-function HomeView({playlists, scroll, toggleView}) {
+function HomeView({playlists, scroll, toggleView, createPlaylist}) {
 
     return(
         <div className="home" data-testid="home">
@@ -13,6 +13,7 @@ function HomeView({playlists, scroll, toggleView}) {
                     playlists={playlists} 
                     scroll={scroll}
                     toggleView={toggleView}
+                    createPlaylist={createPlaylist}
                     /> 
                 : <h1>No playlists!</h1>}
         </div>

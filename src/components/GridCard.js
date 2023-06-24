@@ -1,11 +1,11 @@
 import {forwardRef} from 'react';
 import {truncateText} from '../utils/formatting';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPlus} from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import AddPlaylistCard from '../components/AddPlaylistCard'
 
-
-function GridCard({playlist, innerRef, toggleView}) {
+function GridCard({playlist, innerRef, toggleView, createPlaylist}) {
 
     function handleClick(view, id) {
         if(id === null) {
@@ -32,20 +32,30 @@ function GridCard({playlist, innerRef, toggleView}) {
         )
     }
 
-    function addPlaylistCard() {
-        
-        function createPlaylist() {
-            console.log("Creating playlist")
-        }
+    function displayDummyCard() {
+        // an empty hidden card for formatting purposes
         return(
-            <div className="grid-card" onClick={createPlaylist} >
-                <FontAwesomeIcon icon={faPlus} />
+            <div className="grid-card">
+
             </div>
         )
     }
+    // function addPlaylistCard() {
+        
+    //     function createPlaylist() {
+    //         // so creating a playlist should CREATE a playlist automatically, and take you to the view of the playlist, with no tracks (since playlists start with none).
+    //         console.log("Creating playlist")
+    //     }
+    //     return(
+    //         <div className="grid-card" onClick={createPlaylist} >
+    //             <FontAwesomeIcon icon={faPlus} />
+    //         </div>
+    //     )
+    // }
     return(
         <>
-        {playlist !== null ? displayCard() : addPlaylistCard()}
+        {playlist !== null ? displayCard() : displayDummyCard()}
+        {/* {displayCard()} */}
         </>
     )
 }
