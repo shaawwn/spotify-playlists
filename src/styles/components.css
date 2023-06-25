@@ -1,5 +1,6 @@
 :root {
     --background-offblack: #433F3F;
+    --background-main: #3D485C;
     --background-black: #332f2f;
     --background-black-hover: #4c4e53;
     --background-contrast: #d1d4dd;
@@ -10,7 +11,6 @@
     --font-secondary: #332f2f;
     /* --font-input:  */
 }
-
 
 
 /* || Navbar */
@@ -179,13 +179,57 @@
 
 .playlist-banner {
     display: flex;
-    height: 100px;
+    margin-top: 5px;
+    padding: 15px;
+    gap: 50px;
+    max-height: 200px;
+    min-height: 200px;
+    border-bottom: 1px solid var(--font-main);
+    position: relative;
 }
 
+
+.playlist-banner-subcontainer {
+    position: relative;
+    width: 75%;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-banner-edit {
+    /* line-height: 24px; */
+    height: 36px;
+    color: black;
+    background-color: var(--font-main);
+}
+
+.playlist-banner-title {
+    margin-top: 0px;
+    /* font-size: 64px; */
+    font-size: 2rem;
+}
+.playlist-banner-image {
+    width: 150px;
+    height: 150px;
+}
+
+.playlist-banner-image-none {
+    width: 150px;
+    height: 150px;
+    background-color: var(--background-offblack);
+    text-align: center;
+}
+
+.playlist-banner-image-none > p {
+    margin-top: 50px;
+    margin-bottom: auto;
+    font-size: 24px;
+}
 .playlist-banner-btn {
     background-color: green;
     border-radius: 3px;
-    height: 50px;
+    height: 25px;
     width: 100px;
     margin-top: auto;
     margin-bottom: auto;

@@ -16,6 +16,28 @@ function usePlaylist(accessToken, id) {
         }
     }
 
+    function editDetails(details) {
+        // edit and update playlist details such as name and description
+        console.log("Editing playlist details", details)
+
+        fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+            method: "PUT",
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(details)
+        }).then((response) => {
+            if(!response.ok) {
+                throw new Error()
+            } else {
+                console.log("Details updated")
+                _reload()
+            }
+        }).catch((error) => {
+            console.log("Error updated playlist details", error)
+        })         
+    }
+
     function addTrack(trackID) {
         // make a post reuest to add a track to the playlist
         if(id === undefined) {
@@ -113,7 +135,7 @@ function usePlaylist(accessToken, id) {
     }, [reload])
 
     // will return undefined if no playlist
-    return [playlist, addTrack, removeTrack]
+    return [playlist, addTrack, removeTrack, editDetails]
 }
 
 export default usePlaylist

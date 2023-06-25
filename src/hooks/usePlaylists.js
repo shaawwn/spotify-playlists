@@ -42,6 +42,7 @@ function usePlaylists(accessToken, refresh) {
             setReload(true)
         }
     }
+
     function getPlaylists() {
         fetch(`https://api.spotify.com/v1/me/playlists`, {
             headers: {
@@ -58,6 +59,33 @@ function usePlaylists(accessToken, refresh) {
 
     }
 
+    // function createPlaylist() {
+
+    //     // create a new playlist with a defauly name My Playlist #whatever, take users total playlists and add + 1
+    //     const newPlaylist = {
+    //         "name": `My Playlist ${numPlaylists + 1}`,
+    //         "description": 'My new awesome playlist',
+    //         "public": true,
+    //         "collaborative": false
+    //     }
+    //     console.log("Creating: ", newPlaylist)
+
+    //     fetch(`https://api.spotify.com/v1/users/${user.id}/playlists`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Authorization': `Bearer ${accessToken}`
+    //         },
+    //         body: JSON.stringify(newPlaylist)
+    //     }).then((response) => response.json())
+    //     .then((data) => {
+    //         // console.log("Playlist created", data)
+    //         toggleView('playlist', data.id)
+    //         _refreshPlaylists()
+    //         _refresh()
+    //     }).catch((error) => {
+    //         console.log("error creating playlist", error)
+    //     })
+    // }
 
     useEffect(() => {
         if(accessToken) {

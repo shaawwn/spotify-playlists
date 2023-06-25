@@ -28,7 +28,7 @@ function Dashboard({code}) {
     const accessToken = useAuth(code)
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
-    const [playlist, addTrack, removeTrack] = usePlaylist(accessToken, playlistID)
+    const [playlist, addTrack, removeTrack, editDetails] = usePlaylist(accessToken, playlistID)
 
     // playlists 
     const refreshPlaylists = useRef(false)
@@ -65,6 +65,7 @@ function Dashboard({code}) {
             refreshPlaylists.current = false
         }
     }
+
     function createPlaylist() {
 
         // create a new playlist with a defauly name My Playlist #whatever, take users total playlists and add + 1
@@ -133,6 +134,7 @@ function Dashboard({code}) {
                     playlistID={playlistID}
                     playlist={playlist}
                     removeTrack={removeTrack}
+                    editDetails={editDetails}
                 />
             )
         } else if(view === 'home') {

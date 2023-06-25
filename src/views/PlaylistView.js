@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react';
 import usePlaylist from '../hooks/usePlaylist'
 // import usePlaylist from '../hooks/usePlaylist'
 import TrackTable from '../components/TrackTable';
-import PlaylistBanner from '../components/PlaylistBanner';
+import PlaylistBanner from '../components/PlaylistBanner';import PlaylistSettings from '../components/PlaylistSettings';
 
 
-function PlaylistView({accessToken, playlistID, playlist, removeTrack}) {
+function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetails}) {
     // console.log("Playlist and tracks", playlist)
     // const [playlist] = usePlaylist(accessToken, playlistID)
     // console.log("Playlist view", playlistID, playlist.id)
@@ -22,6 +22,8 @@ function PlaylistView({accessToken, playlistID, playlist, removeTrack}) {
                 name={playlist.name}
                 owner={playlist.owner.display_name}
                 numTracks={playlist.tracks.total}
+                image={playlist.images}
+                editDetails={editDetails}
             />
             <TrackTable 
                 items={playlist.tracks.items}
