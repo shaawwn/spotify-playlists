@@ -2,12 +2,27 @@ import {useState, useEffect} from 'react'
 
 import PlaylistSettings from '../components/PlaylistSettings'
 
-function PlaylistBanner({name, owner, numTracks, image, editDetails}) {
+function PlaylistBanner({name, owner, numTracks, image, editDetails, unfollowPlaylist, toggleView}) {
     // image will return an empty array if there are no images
     const [edit, setEdit] = useState(false)
     function saveEdit() {
         console.log("Saving playlist details.")
         setEdit(false)
+    }
+
+    function handleUnfollow() {
+        // if(confirm("Are you sure you wish to unfollow playlist?")) {
+        //     console.log("Unfollowing playlist")
+        // }
+        // alert("Are you sure you want to unfllow playlist?")
+        if(window.confirm("Are you sure you want to unfollow playlist?")) {
+            console.log("Unfollowing")
+            
+            // unfollow the playlist and redirect back to home reflecting the changes
+            unfollowPlaylist()
+            setTimeout(() => toggleView('home'), 500)
+            // toggleView('home')
+        }
     }
 
     function displayImage() {
@@ -34,6 +49,7 @@ function PlaylistBanner({name, owner, numTracks, image, editDetails}) {
                     <p>{owner}</p>
                     <p>Total tracks {numTracks}</p>
                     <button className="playlist-banner-btn" onClick={() => setEdit(true)}>Edit playlist</button>
+                    <button className="playlist-banner-btn" onClick={handleUnfollow} style={{backgroundColor: 'red'}}>Unfollow</button>
                 </div>
 
             </>

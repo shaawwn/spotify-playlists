@@ -5,7 +5,7 @@ import TrackTable from '../components/TrackTable';
 import PlaylistBanner from '../components/PlaylistBanner';import PlaylistSettings from '../components/PlaylistSettings';
 
 
-function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetails}) {
+function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetails, unfollowPlaylist, toggleView}) {
     // console.log("Playlist and tracks", playlist)
     // const [playlist] = usePlaylist(accessToken, playlistID)
     // console.log("Playlist view", playlistID, playlist.id)
@@ -24,6 +24,8 @@ function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetai
                 numTracks={playlist.tracks.total}
                 image={playlist.images}
                 editDetails={editDetails}
+                unfollowPlaylist={unfollowPlaylist}
+                toggleView={toggleView}
             />
             <TrackTable 
                 items={playlist.tracks.items}

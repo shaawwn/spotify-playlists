@@ -28,7 +28,7 @@ function Dashboard({code}) {
     const accessToken = useAuth(code)
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
-    const [playlist, addTrack, removeTrack, editDetails] = usePlaylist(accessToken, playlistID)
+    const [playlist, addTrack, removeTrack, editDetails, unfollowPlaylist] = usePlaylist(accessToken, playlistID)
 
     // playlists 
     const refreshPlaylists = useRef(false)
@@ -121,9 +121,9 @@ function Dashboard({code}) {
             updateHistory(['playlist', id], true)
         } else if(view === 'home') {
             setPlaylistID()
+            _refreshPlaylists()
         }
         setView(view)
-        // _refresh()
     }
 
     function displayView() {
@@ -135,6 +135,8 @@ function Dashboard({code}) {
                     playlist={playlist}
                     removeTrack={removeTrack}
                     editDetails={editDetails}
+                    unfollowPlaylist={unfollowPlaylist}
+                    toggleView={toggleView}
                 />
             )
         } else if(view === 'home') {

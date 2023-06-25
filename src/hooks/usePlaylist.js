@@ -16,6 +16,25 @@ function usePlaylist(accessToken, id) {
         }
     }
 
+    function unfollowPlaylist() {
+        // spotify does not allow for 'deleting' user playlists, instead, users 'unfollow' playlists, even ones they have created themselves
+
+        fetch(`https://api.spotify.com/v1/playlists/${id}/followers`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        }).then((response) => {
+            if(!response.ok) {
+                throw new Error()
+            } else {
+                console.log("Playlist unfollowed")
+            }
+        }).catch((error) => {
+            console.log("Error unfollowing playlist", error)
+        })
+    }
+
     function editDetails(details) {
         // edit and update playlist details such as name and description
         console.log("Editing playlist details", details)
@@ -135,7 +154,7 @@ function usePlaylist(accessToken, id) {
     }, [reload])
 
     // will return undefined if no playlist
-    return [playlist, addTrack, removeTrack, editDetails]
+    return [playlist, addTrack, removeTrack, editDetails, unfollowPlaylist]
 }
 
 export default usePlaylist
