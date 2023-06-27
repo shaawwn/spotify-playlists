@@ -35,7 +35,7 @@ function GridCard({playlist, innerRef, toggleView, createPlaylist}) {
     function displayDummyCard() {
         // an empty hidden card for formatting purposes
         return(
-            <div className="grid-card">
+            <div className="grid-card dummy">
 
             </div>
         )

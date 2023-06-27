@@ -3,10 +3,9 @@ import {useState, useEffect, useRef, useCallback} from 'react';
 import GridCard from '../components/GridCard';
 import AddPlaylistCard from '../components/AddPlaylistCard'
 
-function Grid({playlists, scroll, toggleView, createPlaylist}) {
-
+function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
     const [loading, setLoading] = useState(true) // after content has loaded set to false
-
+    const dummyAmount = useRef(0)
     const observer = useRef()
 
     const lastPlaylistElement = useCallback(node => {
@@ -21,13 +20,24 @@ function Grid({playlists, scroll, toggleView, createPlaylist}) {
     }, [loading])
 
 
+    function _getDummyAmount() {
+        let dummyAmount = 0
+        if(numPlaylists % 5 !== 0) {
+            while(numPlaylists % 5 !== 0) {
+                numPlaylists += 1
+                dummyAmount += 1
+            }
+        }
+        return dummyAmount - 1
+    }
     function displayGrid() {
         // console.log("GRID PLAYLISTS", playlists)
-
+        dummyAmount.current = _getDummyAmount()
         return(
             <>
             {playlists.map((playlist, index) => {
                 if(playlists.length === index + 1) {
+                    // last card to add observer to
                     return <GridCard 
                                 innerRef={lastPlaylistElement} 
                                 key={playlist.id} 
@@ -43,6 +53,7 @@ function Grid({playlists, scroll, toggleView, createPlaylist}) {
                 }
 
             })}
+            
             </>
         )
     }
@@ -51,6 +62,7 @@ function Grid({playlists, scroll, toggleView, createPlaylist}) {
         if(loading) {
             setLoading(false)
         } 
+        dummyAmount.current = _getDummyAmount()
     }, [])
 
     return(
@@ -65,11 +77,14 @@ function Grid({playlists, scroll, toggleView, createPlaylist}) {
                 {playlists.length > 0 ? displayGrid() : <h1>No playlists!</h1> }
                 {playlists % 5 !== 0 ? 
                     // add dummys
+                    [...Array(dummyAmount.current)].map((e, i) => 
                     <GridCard 
                         playlist={null} 
                         toggleView={toggleView}
-                        />
+                        key={i}
+                        />)
                 :<span></span>}
+
             </div>
         </div>
     )

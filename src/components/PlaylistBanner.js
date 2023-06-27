@@ -20,8 +20,7 @@ function PlaylistBanner({name, owner, numTracks, image, editDetails, unfollowPla
             
             // unfollow the playlist and redirect back to home reflecting the changes
             unfollowPlaylist()
-            setTimeout(() => toggleView('home'), 500)
-            // toggleView('home')
+            setTimeout(() => toggleView('home'), 500) // allows time for the server to reflect change before loading view
         }
     }
 

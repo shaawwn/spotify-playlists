@@ -146,6 +146,7 @@ function Dashboard({code}) {
                     scroll={scroll}
                     toggleView={toggleView}
                     createPlaylist={createPlaylist}
+                    numPlaylists={numPlaylists}
                 /> 
             )
 

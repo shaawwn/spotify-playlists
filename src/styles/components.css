@@ -60,6 +60,10 @@
     font-size: 10px;
 }
 
+.dummy {
+    background-color: var(--background-offblack);
+}
+
 .grid-card > svg {
     width: 100px;
     height: 100px;
@@ -121,6 +125,35 @@
     z-index: 11;
 }
 
+/* || Table */
+
+.track-table {
+    width: 100%;
+    table-layout:fixed;
+}
+
+.track-table-body {
+    background-color: white;
+    padding: 50px;
+}
+
+.track-table-row {
+    font-size: 18px;
+    background-color: var(--background-offblack);
+    width: 100%;
+}
+
+.track-table-cell-name {
+    /* background-color: red; */
+    width:350%;
+}
+.track-table-row:hover {
+    background-color: var(--background-black);
+}
+
+.track-table-row > td {
+    max-width: 25%;
+}
 
 /* || Search */
 

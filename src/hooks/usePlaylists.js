@@ -89,7 +89,7 @@ function usePlaylists(accessToken, refresh) {
 
     useEffect(() => {
         if(accessToken) {
-            console.log("Loading playlists init, refresh value: ", refresh)
+            // console.log("Loading playlists init, refresh value: ", refresh)
             getPlaylists()
         } 
     }, [accessToken])
@@ -97,7 +97,7 @@ function usePlaylists(accessToken, refresh) {
     useEffect(() => {
         // by default, refresh is set to false, only after that first load should it be true
         if(accessToken) {
-            console.log("Refresh playlists")
+            // console.log("Refresh playlists")
             getPlaylists()
         }
     }, [refresh])

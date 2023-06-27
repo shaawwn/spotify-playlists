@@ -1,4 +1,6 @@
 
+import {useEffect} from 'react'
+
 import '../src/styles/App.css'
 import '../src/styles/components.css'
 import Login from './Login'
@@ -11,7 +13,9 @@ const code = new URLSearchParams(window.location.search).get('code')
 
 function App() {
 
-  
+  useEffect(() => {
+    console.log("Loading app")
+  }, [])
   return code ? <Dashboard code={code} />: <Login authUrl={AUTH_URL}/>
 }
 

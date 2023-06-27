@@ -9,7 +9,7 @@ function TrackTable({items, removeTrack}) {
     function displayTable() {
 
         return(
-            <tbody>
+            <tbody className="track-table-body">
                 {items.map((item) => 
                     <TrackTableRow 
                         key={item.track.id}
@@ -32,7 +32,7 @@ function TrackTable({items, removeTrack}) {
     return(
         <>
             <table className="track-table">
-                <thead>
+                <thead style={{textAlign: 'left'}}>
                     <tr>
                         <th>Name</th>
                         <th>Artist</th>
