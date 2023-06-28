@@ -128,20 +128,38 @@
 /* || Table */
 
 .track-table {
-    width: 100%;
+    min-width: 100%;
     table-layout:fixed;
 }
 
-.track-table-body {
-    background-color: white;
-    padding: 50px;
+.track-table-head {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.track-table-row {
-    font-size: 18px;
-    background-color: var(--background-offblack);
+.track-table-cell {
+    text-align: left;
+    /* padding: 5px; */
     width: 100%;
+    /* background-color: red; */
 }
+
+.track-table-cell-name {
+    /* min-width: 25%; */
+    /* background-color: green; */
+}
+/* .track-table-body {
+    background-color: white;
+    padding: 50px;
+} */
+
+.track-table-row {
+    display: flex;
+    background-color: var(--background-offblack);
+    min-width: 100%;
+}
+
+
 
 .track-table-cell-name {
     /* background-color: red; */

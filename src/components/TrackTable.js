@@ -9,7 +9,7 @@ function TrackTable({items, removeTrack}) {
     function displayTable() {
 
         return(
-            <tbody className="track-table-body">
+            <div className="track-table-body">
                 {items.map((item) => 
                     <TrackTableRow 
                         key={item.track.id}
@@ -17,7 +17,7 @@ function TrackTable({items, removeTrack}) {
                         removeTrack={removeTrack}
                         />
                 )}
-            </tbody>
+            </div>
         )
     }
 
@@ -31,17 +31,28 @@ function TrackTable({items, removeTrack}) {
 
     return(
         <>
-            <table className="track-table">
-                <thead style={{textAlign: 'left'}}>
-                    <tr>
-                        <th>Name</th>
-                        <th>Artist</th>
-                        <th>Album</th>
-                        <th>Duration</th>
-                    </tr>
-                </thead>
+            <div className="track-table">
+                {/* <div style={{textAlign: 'left'}}> */}
+                    <div className="track-table-head">
+                        <div className="track-table-cell-name">
+                            <p>Name</p>
+                        </div>
+                        <div className="track-table-cell">
+                            <p>Artist</p>
+                        </div>
+                        <div className="track-table-cell">
+                            <p>Album</p>
+                        </div>
+                        <div className="track-table-cell">
+                            <p>Duration</p>
+                        </div>
+                        <div className="track-table-cell">
+                            <p>Update</p>
+                        </div>
+                    </div>
+                {/* </div> */}
                 {items.length > 0 ? displayTable() : displayEmptyTable()}
-            </table>    
+            </div>    
         </>
 
     )

@@ -1,5 +1,5 @@
 import {useState, useEffet} from 'react';
-import {msToMinutesAndSeconds, truncateText} from '../utils/formatting'
+import {msToMinutesAndSeconds, truncateText, truncateTextLong} from '../utils/formatting'
 
 
 function TrackTableRow({item, removeTrack}) {
@@ -11,15 +11,15 @@ function TrackTableRow({item, removeTrack}) {
     }
     function displayRow() {
         return(
-            <tr className="track-table-row">
-                <td className="track-table-cell">{item.name}</td>
-                <td className="track-table-cell">{item.artists[0].name}</td>
-                <td className="track-table-cell">{truncateText(item.album.name)}</td>
-                <td className="track-table-cell">{msToMinutesAndSeconds(item.duration_ms)}</td>
-                <td className="track-table-cell">
+            <div className="track-table-row">
+                <div className="track-table-cell-name">{truncateTextLong(item.name)}</div>
+                <div className="track-table-cell">{item.artists[0].name}</div>
+                <div className="track-table-cell">{truncateText(item.album.name)}</div>
+                <div className="track-table-cell">{msToMinutesAndSeconds(item.duration_ms)}</div>
+                <div className="track-table-cell">
                     <button className="search-row-btn" onClick={() => handleButtonClick(item.id)}>Remove</button>
-                </td>
-            </tr>
+                </div>
+            </div>
         )
     }
 

@@ -28,6 +28,22 @@ function isAlphaNumeric(str) {
     return text
   }
   
+  function truncateTextLong(text) {
+    // if text > certain length, replace with ellipsis
+    // console.log("TRAUNCATED", text)
+    
+      let charLimit = 75;
+      // if(isAlphaNumeric(text) === false) {
+      //   // check for english text, since non-english might be different sizes
+      //   charLimit = 30
+      // }
+      if(text.split("").length > charLimit) {
+          return text.substring(0, charLimit) + '...'
+      } 
+      return text
+    }
+    
+
   function msToMinutesAndSeconds(millis) {
       var minutes = Math.floor(millis / 60000);
       var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -56,5 +72,6 @@ function isAlphaNumeric(str) {
   module.exports = {
       truncateText,
       msToMinutesAndSeconds,
-      printSongDetails
+      printSongDetails,
+      truncateTextLong
   }
