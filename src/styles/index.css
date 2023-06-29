@@ -112,7 +112,7 @@ code {
 }
 
 .search-sidebar {
-  /* display: flex; */
+  display: flex;
   position: fixed;
   top: 7vh;
   bottom: 0;

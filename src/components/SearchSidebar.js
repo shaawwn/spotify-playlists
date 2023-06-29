@@ -9,6 +9,8 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, removeTrack
     // const [toggleResults, setToggleResults] = useState(false) // results false by default
     const [search, searchResult, setSearchResult] = useSearch(accessToken) // from the searchResult can get ALL search results since it includes the pagination url
     const [tracks, setTracks] = useState()
+    const [albums, setAlbums] = useState()
+    const [filter, setFilter] = useState('tracks') // tracks/albums
     const pagination = useRef()
 
 
@@ -73,27 +75,66 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, removeTrack
         handlePagination()
 
     }
+
+    function toggleResults(toggle) {
+        // can toggle between tracks/albums/maybe artists (artist top tracks?)
+        if(toggle === 'tracks') {
+            // display the tracks search
+            setFilter('tracks')
+        } else if(toggle === 'albums') {
+            // display the albums results (visually similar to  tracks, but when clicked create a dropdown showing album tracks)
+            setFilter('albums')
+        }
+    }
+
     function displayResult() {
         // console.log("SEARCH RESULT", searchResult.tracks.items)
-        if(searchResult && tracks) {
-
-            return(
-                <SearchResults 
-                    tracks={tracks}
-                    scroll={scroll}
-                    addTrack={addTrack}
-                    removeTrack={removeTrack}
-                />
-            )
+        if(filter === 'tracks') {
+            if(searchResult && tracks) {
+                return(
+                    <>
+                    <ToggleFilter 
+                        current={filter}
+                        toggle={toggleResults}
+                    />
+                    <SearchResults 
+                        tracks={tracks}
+                        scroll={scroll}
+                        addTrack={addTrack}
+                        removeTrack={removeTrack}
+                        filter={filter}
+                        accessToken={accessToken}
+                    />
+                    </>
+                )
+            }
+        } else if(filter === 'albums') {
+            if(searchResult && tracks) {
+                return(
+                    <>
+                        <ToggleFilter 
+                            current={filter}
+                            toggle={toggleResults}
+                        />
+                        <SearchResults 
+                            tracks={albums}
+                            scroll={scroll}
+                            addTrack={addTrack}
+                            removeTrack={removeTrack}
+                            filter={filter}
+                            accessToken={accessToken}
+                        /> 
+                    </>
+                )
+            }
         }
-        // return(
-        //     <h1 style={{color: 'black'}}>No results!</h1>
-        // )
     }
 
     useEffect(() => {
         if(searchResult) {
+            console.log("searchResult", searchResult)
             setTracks(searchResult.tracks.items)
+            setAlbums(searchResult.albums.items)
             pagination.current = searchResult.tracks.next // pagination is set on search result (this happens only once per result)
         }
     }, [searchResult])
@@ -117,4 +158,47 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, removeTrack
     )
 }
 
+function ToggleFilter({current, toggle}) {
+
+    function handleClick(param) {
+        toggle(param)
+    }
+
+    function displayTracksButton() {
+        if(current === 'tracks') {
+            return(
+                <button className="search-row-btn toggle-current" onClick={() => handleClick('tracks')}>Tracks</button>
+            )
+        } 
+        return(
+            <button className="search-row-btn toggle" onClick={() => handleClick('tracks')}>Tracks</button>
+        )
+    }
+
+    function displayAlbumsButton() {
+        if(current === 'albums') {
+            return(
+                <button className="search-row-btn toggle-current" onClick={() => handleClick('albums')}>Albums</button>
+            )
+        } 
+        return(
+            <button className="search-row-btn toggle" onClick={() => handleClick('albums')}>Albums</button>
+        )
+    }
+
+    function display() {
+        return(
+            <>
+                {displayTracksButton()}
+                {displayAlbumsButton()}
+            </>
+        )
+    }
+
+    return (
+        <div className="search-filter-toggle">
+            {display()}
+        </div>
+    )
+}
 export default SearchSidebar

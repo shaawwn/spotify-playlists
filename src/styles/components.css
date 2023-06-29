@@ -1,6 +1,7 @@
 :root {
     --background-offblack: #433F3F;
     --background-main: #3D485C;
+    --background-highlight: #728cbb;
     --background-black: #332f2f;
     --background-black-hover: #4c4e53;
     --background-contrast: #d1d4dd;
@@ -175,6 +176,31 @@
 
 /* || Search */
 
+.search-album {
+    /* display: none; */
+    background-color: var(--background-main);
+    color: var(--font-main);
+}
+
+.search-album-dropdown {
+
+}
+
+.search-album-dropdown-row {
+    display: flex;
+    justify-content: space-between
+}
+.search-album-track {
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+}
+.search-results {
+    display: flex;
+    flex-direction: column;
+}
+
 .search-input {
     color: var(--background-black);
     border-radius: 5px;
@@ -186,16 +212,34 @@
     font-size: 18px
 }
 
-.search-row {
+.search-result-row {
     /* height: 3rem; */
-}
-.search-row-details {
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.search-result-row-content {
+    /* display: flex; */
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.search-row-details {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* background-color: red; */
+    /* display: block; */
+    max-width: 80%;
+    overflow:hidden;
+    white-space: nowrap;
+
 }
 
 
 .search-row-details-name {
+    /* display: inline-block; */
     font-size: 18px;
     color: var(--font-dark);
     /* background-color: red; */
@@ -206,6 +250,7 @@
     color: var(--font-secondary);
     /* background-color: blue; */
 }
+
 .search-row-btn {
     background-color: var(--button-main);
     border-radius: 5px;
@@ -226,6 +271,18 @@
 
 }
 
+.search-filter-toggle {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.toggle {
+    background-color: var(--background-highlight);
+    color: var(--font-main);
+}
+.toggle-current {
+    background-color: var(--background-main);
+}
 /* || Playlist */
 
 .playlist-banner {
