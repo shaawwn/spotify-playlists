@@ -1,13 +1,8 @@
 import {useEffect, useState} from 'react';
 import {truncateTextLong} from '../utils/formatting'
 
-// a dropdown menu that will appear in search bar to give a smaller list of tracks in an album, maybe with a 'select all' option, or radio buttons
 
-// creates like a popup with the top left corner at the location, or, pushes other results down
-
-// realistically, also need
 function SearchAlbum({id, load, accessToken, addTrack}) {
-    // basic title/artist header and a small table for tracks
     const [album, setAlbum] = useState()
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState('')
@@ -20,20 +15,17 @@ function SearchAlbum({id, load, accessToken, addTrack}) {
             }
         }).then((response) => response.json())
         .then((data) => {
-            console.log("Albumd ata in searcAlbum", data.name, data.tracks.items)
             setAlbum(data)
-            // setDropdown('search-dropdown')
         })
     }
 
     function displayAlbum() {
         if(visible && album) {
             return(
-                // <h1>I'm a search album dropdown!</h1>
                 <>
-                <SearchAlbumDropdown 
-                    tracks={album.tracks.items} 
-                    addTrack={addTrack}
+                    <SearchAlbumDropdown 
+                        tracks={album.tracks.items} 
+                        addTrack={addTrack}
                     />
                 </>
             )

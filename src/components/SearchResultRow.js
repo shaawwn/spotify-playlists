@@ -1,5 +1,4 @@
 import {useEffect, useState, useRef} from 'react';
-import series from 'async/series'
 import {truncateText, truncateTextLong} from '../utils/formatting' 
 import SearchAlbum from '../components/SearchAlbum';
 
@@ -11,10 +10,10 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
     const [albumLoad, setAlbumLoad] = useState(false)
 
     function handleButtonClick(e) {
-        // need to alter for albums
         e.stopPropagation()
+
+        // add all tracks from an album
         if(track.hasOwnProperty('album_type')) {
-            // get the album, and add all tracks
             fetch(`https://api.spotify.com/v1/albums/${track.id}`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
@@ -28,13 +27,13 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
                 addAllTracks(uris)
             })
         } else {
+            // add an individual track only
             addTrack(track.id)
         }
     }
 
 
     function displayAlbum(e) {
-        // IF an album, toggle the albumd isplay which is a dropdown showing album track content
         if(albumLoad === true) {
             setAlbumLoad(false)
         } else if(albumLoad === false) {
@@ -53,14 +52,9 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
             )
         }
     }
-    // useEffect(() => {
-    //     // if(albumID) {
-    //     //     console.log("Album id", albumID)
-    //     // } 
-    // }, [])
 
-    return(
-        <div className="search-result-row" onClick={displayAlbum}ref={innerRef}>
+    function displayRowContent() {
+        return(
             <div className="search-result-row-content">
                 <div className="search-row-details">
                     <p className="search-row-details-name">{truncateTextLong(track.name)}</p>
@@ -68,6 +62,12 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
                 </div>
                 <div className="search-row-btn" onClick={handleButtonClick}>Add</div>
             </div>
+        )
+    }
+
+    return(
+        <div className="search-result-row" onClick={displayAlbum}ref={innerRef}>
+            {displayRowContent()}
             {albumID ?
                 <>
                     {displayCaret()}
@@ -77,7 +77,6 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
                         accessToken={accessToken}
                         addTrack={addTrack} />
                 </> :<span></span>}
-            {/* <SearchAlbum /> */}
         </div>
     )
 }

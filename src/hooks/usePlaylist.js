@@ -58,12 +58,15 @@ function usePlaylist(accessToken, id) {
     }
 
     function addAllTracks(uriArray) {
-        // add all tracks from playlist/album in one call, uriArray is an array of spotify uris to add in the order they appear in the array    
+        // add all tracks from playlist/album in one call, uriArray is an array of spotify uris to add in the order they appear in the array 
+        if(id === undefined) {
+            alert("No playlist selected!")
+            return false
+        }   
         let payload = {
             'uris': uriArray
             // position - index based position on where to add tracks to playlist, will append to playlist if no index given
         }
-        // console.log('ADD ALL PAYLOAD', payload)
         fetch(`https://api.spotify.com/v1/playlists/${id}/tracks`, {
             method: "POST",
             headers: {
@@ -76,8 +79,6 @@ function usePlaylist(accessToken, id) {
             }
             response.json()
         }).then((data) => {
-            // returns 201 status code only on success
-            // console.log("Adding uris", payload)
             _reload()
         }).catch((err) => {
             console.log("There was an error adding all tracks", err)
@@ -87,7 +88,6 @@ function usePlaylist(accessToken, id) {
     function addTrack(trackID) {
         // make a post reuest to add a track to the playlist
         if(id === undefined) {
-            // console.log("No playlist selected!")
             alert("No playlist selected!")
             return false
         }
@@ -106,12 +106,10 @@ function usePlaylist(accessToken, id) {
             }
             response.json()
         }).then((data) => {
-            // console.log("Adding track", data)
             _reload()
         }).catch((data) => {
             console.log("Error added track", data)
         })
-        // console.log("Adding to playlist: ", id, "track: ", trackID)
     }
 
     function removeTrack(trackID) {
@@ -162,6 +160,7 @@ function usePlaylist(accessToken, id) {
         })
     }
     
+
     useEffect(() => {
         if(accessToken && id) {
             getPlaylist()

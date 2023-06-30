@@ -6,11 +6,11 @@ import SearchResults from '../components/SearchResults';
 
 
 function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTracks, removeTrack}) {
-    // const [toggleResults, setToggleResults] = useState(false) // results false by default
+
     const [search, searchResult, setSearchResult] = useSearch(accessToken) // from the searchResult can get ALL search results since it includes the pagination url
     const [tracks, setTracks] = useState()
     const [albums, setAlbums] = useState()
-    const [filter, setFilter] = useState('tracks') // tracks/albums
+    const [filter, setFilter] = useState('tracks') // tracks or albums, tracks by default
     const pagination = useRef()
 
 
@@ -88,7 +88,6 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
     }
 
     function displayResult() {
-        // console.log("SEARCH RESULT", searchResult.tracks.items)
         if(filter === 'tracks') {
             if(searchResult && tracks) {
                 return(
@@ -134,7 +133,7 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
 
     useEffect(() => {
         if(searchResult) {
-            console.log("searchResult", searchResult)
+            // console.log("searchResult", searchResult)
             setTracks(searchResult.tracks.items)
             setAlbums(searchResult.albums.items)
             pagination.current = searchResult.tracks.next // pagination is set on search result (this happens only once per result)
@@ -143,8 +142,7 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
 
     useEffect(() => {
         if(searchState === false) {
-            setSearchResult()
-            // reset input to none
+            setSearchResult() // resets input to ''
         }
     }, [searchState])
 
@@ -155,7 +153,6 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
                 searchState={searchState}
             />
             {displayResult()}
-            {/* {searchResult !== undefined ? <SearchResults searchResult={searchResult} /> : <span>No results</span>} */}
         </div>
     )
 }

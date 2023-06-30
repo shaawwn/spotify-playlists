@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef, useCallback} from 'react';
 
 import SearchResultRow from '../components/SearchResultRow'
-import SearchAlbum from '../components/SearchAlbum'
+
 
 function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, filter, accessToken}) {
 
@@ -10,27 +10,21 @@ function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, fil
     const observer = useRef()
 
     const lastSearchElement = useCallback(node => {
-        // console.log("Last element")
         if(loading) return
         if(observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(tracks => {
             if(tracks[tracks.length - 1].isIntersecting) {
                 scroll()
-                // console.log("End of results", tracks[tracks.length - 1].target.innerText)
             } 
         })
         if(node) observer.current.observe(node)
     }, [loading])
 
-    function displayAlbumTracks() {
-        // clicking on an album will create a dropdown showing a what tracks are in the album as well as options to add individual tracks or all
-    }
-
     function displaySearchResults() {
         // gonna need something for albums here 
         if(filter === 'tracks') {
             return(
-                <>
+                <div className="search-results">
                     {tracks.map((track, index) => {
                         if(tracks.length === index + 1) {
                             return(
@@ -53,11 +47,11 @@ function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, fil
                             )
                         }
                     })}
-                </>
+                </div>
             )
         } else {
         return(
-            <>
+            <div className="search-results">
                 {tracks.map((track, index) => {
                     if(tracks.length === index + 1) {
                         return(
@@ -86,41 +80,24 @@ function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, fil
                         )
                     }
                 })}
-            </>
+            </div>
         )}
     }
-    useEffect(() => {
-        // console.log(searchResult.tracks.items)
-    }, [tracks])
+    // useEffect(() => { // possibly no need
 
-    useEffect(() => {
+    // }, [tracks])
+
+    useEffect(() => { // this is required to make observer work
         if(loading) {
             setLoading(false)
         }
-    })
+    }, [])
 
     return(
-        <div className="search-results">
-            {/* <thead>
-                <tr>
-                    <th>Track</th>
-                </tr>
-            </thead> */}
-            <div>
-                {displaySearchResults()}
-            </div>
-        </div>
+        <>
+            {displaySearchResults()}
+        </>
     )
 }
 
-// function SearchResultRow({track, innerRef}) {
-
-//     return(
-//         <tr className="search-row" ref={innerRef}>
-//             <td style={{color: 'black'}}>
-//                 {track.name}
-//             </td>
-//         </tr>
-//     )
-// }
 export default SearchResults
