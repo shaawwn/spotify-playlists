@@ -8,7 +8,7 @@ function HomeView({playlists, scroll, toggleView, createPlaylist, numPlaylists})
 
     useEffect(() => {
         if(playlists[0]) {
-           console.log("Home view loading", playlists[0].name, numPlaylists)  
+        //    console.log("Home view loading", playlists[0].name, numPlaylists)  
         }
     }, [playlists])
 

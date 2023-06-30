@@ -176,10 +176,27 @@
 
 /* || Search */
 
+@keyframes dropdown{
+    0% {
+        opacity: 0;
+      transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 .search-album {
     /* display: none; */
     background-color: var(--background-main);
     color: var(--font-main);
+    /* animation: 1s ease 0s 1 dropdown; */
+    /* animation-iteration-count: 0; */
+}
+
+.search-dropdown {
+    animation: 0.25s ease 0s 1 dropdown;
 }
 
 .search-album-dropdown {

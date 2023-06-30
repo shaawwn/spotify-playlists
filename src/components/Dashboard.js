@@ -28,7 +28,7 @@ function Dashboard({code}) {
     const accessToken = useAuth(code)
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
-    const [playlist, addTrack, removeTrack, editDetails, unfollowPlaylist] = usePlaylist(accessToken, playlistID)
+    const [playlist, addTrack, removeTrack, editDetails, unfollowPlaylist, addAllTracks] = usePlaylist(accessToken, playlistID)
 
     // playlists 
     const refreshPlaylists = useRef(false)
@@ -115,7 +115,7 @@ function Dashboard({code}) {
     }
 
     function toggleView(view, id) {
-        console.log(view, id)
+        // console.log(view, id)
         if(view === 'playlist') {
             setPlaylistID(id)
             updateHistory(['playlist', id], true)
@@ -184,7 +184,7 @@ function Dashboard({code}) {
     useEffect(() => {
         // console.log("playlists", playlists)
         // if(playlists.length > 0) {
-        //     // set a playlists so that when you add songs, there is no error, OR, just add error handling when you try to add songs
+        //     // set a playlists so that when you f songs, there is no error, OR, just add error handling when you try to add songs
         //     setPlaylistID(playlists[0].id)
         // }
         
@@ -220,6 +220,7 @@ function Dashboard({code}) {
                         accessToken={accessToken}
                         searchState={searchState}
                         addTrack={addTrack}
+                        addAllTracks={addAllTracks}
                         removeTrack={removeTrack}
 
                     />

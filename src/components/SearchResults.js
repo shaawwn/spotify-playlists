@@ -3,14 +3,14 @@ import {useState, useEffect, useRef, useCallback} from 'react';
 import SearchResultRow from '../components/SearchResultRow'
 import SearchAlbum from '../components/SearchAlbum'
 
-function SearchResults({tracks, scroll, addTrack, removeTrack, filter, accessToken}) {
+function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, filter, accessToken}) {
 
     const [loading, setLoading] = useState(true) // after content has loaded set to false
 
     const observer = useRef()
 
     const lastSearchElement = useCallback(node => {
-        console.log("Last element")
+        // console.log("Last element")
         if(loading) return
         if(observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(tracks => {
@@ -66,6 +66,7 @@ function SearchResults({tracks, scroll, addTrack, removeTrack, filter, accessTok
                                 innerRef={lastSearchElement}
                                 key={track.id}
                                 addTrack={addTrack}
+                                addAllTracks={addAllTracks}
                                 removeTrack={removeTrack}
                                 albumID={track.id}
                                 accessToken={accessToken}
@@ -77,6 +78,7 @@ function SearchResults({tracks, scroll, addTrack, removeTrack, filter, accessTok
                                 track={track}
                                 key={track.id}
                                 addTrack={addTrack}
+                                addAllTracks={addAllTracks}
                                 removeTrack={removeTrack}
                                 albumID={track.id}
                                 accessToken={accessToken}
