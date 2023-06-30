@@ -141,6 +141,7 @@ function Dashboard({code}) {
             )
         } else if(view === 'home') {
             return(
+                // <div onMouseEnter={changeScroll} onMouseLeave={changeScroll}>
                 <HomeView 
                     playlists={playlists}
                     scroll={scroll}
@@ -148,6 +149,7 @@ function Dashboard({code}) {
                     createPlaylist={createPlaylist}
                     numPlaylists={numPlaylists}
                 /> 
+                // </div>
             )
 
         }
@@ -168,6 +170,14 @@ function Dashboard({code}) {
         })
     }
 
+    // function changeScroll(e){ 
+    //     console.log("Changin sceroll", e)
+    //     let style = document.body.style.overflow 
+    //     // let style = e.target.style.overflow
+    //     console.log(style)
+    //     document.body.style.overflow = (style === 'hidden') ? 'auto':'hidden'
+    // } 
+    
     useEffect(() => {
         if(accessToken) {
             // getCurrentUser(accessToken, setUser, setPremium)
@@ -231,4 +241,17 @@ function Dashboard({code}) {
     )
 }
 
+function Wrapper(content) {
+
+    function displayContent() {
+        return(
+            {content}
+        )
+    }
+    return(
+        <div className="wrapper">
+            {displayContent()}
+        </div>
+    )
+}
 export default Dashboard
