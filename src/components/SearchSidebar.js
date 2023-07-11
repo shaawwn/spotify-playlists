@@ -10,7 +10,7 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
     const [search, searchResult, setSearchResult] = useSearch(accessToken) // from the searchResult can get ALL search results since it includes the pagination url
     const [tracks, setTracks] = useState()
     const [albums, setAlbums] = useState()
-    const [filter, setFilter] = useState('tracks') // tracks or albums, tracks by default
+    const [filter, setFilter] = useState('tracks') // tracks or albums
     const pagination = useRef()
 
 
@@ -53,16 +53,12 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
             console.log("No more results")
             return false
         }
-        // console.log("handling pagination", pagination.current)
-        // make a fetch  to get the next round of TRACKS
-
         fetch(pagination.current, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         }).then((response) => response.json())
         .then((data) => {
-            // console.log("Next tracks", data)
             pagination.current = data.tracks.next
             // set pagination, set new tracks
             setTracks(prevTracks => prevTracks.concat(data.tracks.items))
@@ -70,19 +66,15 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
     }
 
     function scroll() {
-        // console.log("Scrolling to new tracks", pagination.current)
-        // make a fetch to the API to get the new tracks and concat onto the list of tracks, but need to then pass them onto search reults with a re-render
+        // make a fetch to the API to get the new tracks and concat onto the list of tracks, but need to then pass them onto search results with a re-render
         handlePagination()
-
     }
 
     function toggleResults(toggle) {
         // can toggle between tracks/albums/maybe artists (artist top tracks?)
         if(toggle === 'tracks') {
-            // display the tracks search
             setFilter('tracks')
         } else if(toggle === 'albums') {
-            // display the albums results (visually similar to  tracks, but when clicked create a dropdown showing album tracks)
             setFilter('albums')
         }
     }
@@ -133,7 +125,6 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
 
     useEffect(() => {
         if(searchResult) {
-            // console.log("searchResult", searchResult)
             setTracks(searchResult.tracks.items)
             setAlbums(searchResult.albums.items)
             pagination.current = searchResult.tracks.next // pagination is set on search result (this happens only once per result)

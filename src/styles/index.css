@@ -50,6 +50,16 @@ code {
   /* background-color: var(--background-main); */
 }
 
+.flashing {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .home {
   position: relative;
   flex: 1;

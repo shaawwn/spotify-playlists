@@ -15,7 +15,6 @@ function GridCard({playlist, innerRef, toggleView, createPlaylist}) {
     }
 
     function displayCard() {
-        // console.log("PLAYLISTS", playlist.images)
         return(
             <div className="grid-card" onClick={handleClick}>
                 {playlist && playlist.images.length > 0 ? 
@@ -40,18 +39,7 @@ function GridCard({playlist, innerRef, toggleView, createPlaylist}) {
             </div>
         )
     }
-    // function addPlaylistCard() {
-        
-    //     function createPlaylist() {
-    //         // so creating a playlist should CREATE a playlist automatically, and take you to the view of the playlist, with no tracks (since playlists start with none).
-    //         console.log("Creating playlist")
-    //     }
-    //     return(
-    //         <div className="grid-card" onClick={createPlaylist} >
-    //             <FontAwesomeIcon icon={faPlus} />
-    //         </div>
-    //     )
-    // }
+
     return(
         <>
         {playlist !== null ? displayCard() : displayDummyCard()}

@@ -368,3 +368,13 @@
     font-size: 32px;
     margin: auto 0px auto 20px;
 }
+
+/* Media Queries */
+
+@media (max-width: 400px) {
+    .search-sidebar {
+        /* position: fixed; */
+        width: 50%;
+        /* background-color: red; */
+    }
+}

@@ -21,8 +21,6 @@ import PlaylistView from '../views/PlaylistView'
 // import HistoryNavigator from '../components/historyNav' // TODO
 // include a message if user is not premium (free users cannot use app)
 
-// awesome playlist id= 37i7cmrZzQ3irpEJbyqIw9
-
 function Dashboard({code}) {
 
     const accessToken = useAuth(code)
@@ -40,7 +38,7 @@ function Dashboard({code}) {
 
     const [view, setView] = useState('home') // home by default
     const [searchbar, setSearchbar] = useState('none') // toggle searchbar
-    const [searchState, setSearchState] = useState(false) // use this to reset search
+    const [searchState, setSearchState] = useState(false) // use this to reset search input to ''
     const [refresh, setRefresh] = useState(false)
 
 
@@ -66,8 +64,13 @@ function Dashboard({code}) {
         }
     }
 
-    function createPlaylist() {
+    function handleCreatePlaylistRefresh() {
+        // refresh dashboard when a new playlist is created to render new playlist in the list
+        _refresh()
+        _refreshPlaylists()
+    }
 
+    function createPlaylist() {
         // create a new playlist with a defauly name My Playlist #whatever, take users total playlists and add + 1
         const newPlaylist = {
             "name": `My Playlist ${numPlaylists + 1}`,
@@ -87,13 +90,11 @@ function Dashboard({code}) {
         .then((data) => {
             // console.log("Playlist created", data)
             toggleView('playlist', data.id)
-            _refreshPlaylists()
-            _refresh()
+            handleCreatePlaylistRefresh()
         }).catch((error) => {
             console.log("error creating playlist", error)
         })
     }
-
 
     function toggleSearchbar() {
         // toggle search bar on/off
@@ -106,6 +107,7 @@ function Dashboard({code}) {
         }
     }
 
+
     function _toggleSearchState() {
         if(searchState === true) {
             setSearchState(false)
@@ -113,6 +115,7 @@ function Dashboard({code}) {
             setSearchState(true)
         }
     }
+
 
     function toggleView(view, id) {
         // console.log(view, id)
@@ -125,6 +128,7 @@ function Dashboard({code}) {
         }
         setView(view)
     }
+
 
     function displayView() {
         if(view === 'playlist' && playlistID) { // playlist cannot be null
@@ -155,58 +159,8 @@ function Dashboard({code}) {
         }
     }
 
-    function displayNavbar() {
-        // horizontal navbar at top of page
-    }
-
-    function getCurrentUser() {
-        fetch(`https://api.spotify.com/v1/me`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        }).then((response) => response.json())
-        .then((data) => {
-            setUser(data)
-        })
-    }
-
-    // function changeScroll(e){ 
-    //     console.log("Changin sceroll", e)
-    //     let style = document.body.style.overflow 
-    //     // let style = e.target.style.overflow
-    //     console.log(style)
-    //     document.body.style.overflow = (style === 'hidden') ? 'auto':'hidden'
-    // } 
-    
-    useEffect(() => {
-        if(accessToken) {
-            // getCurrentUser(accessToken, setUser, setPremium)
-            getCurrentUser()
-        }
-    }, [accessToken])
-
-    // useEffect(() => {
-    //     if(user && user.product !== 'premium') {
-    //         console.log("Redirect to spotify signup page")
-    //     }
-    // }, [user])
-
-    useEffect(() => {
-        // console.log("playlists", playlists)
-        // if(playlists.length > 0) {
-        //     // set a playlists so that when you f songs, there is no error, OR, just add error handling when you try to add songs
-        //     setPlaylistID(playlists[0].id)
-        // }
-        
-    }, [playlists])
-
-    useEffect(() => {
-        // console.log("PLAYLIST IN DASHBOARD", playlist)
-    }, [playlistID])
-
-    return(
-        <div className="dashboard">
-            {user ? 
+    function displayNavAndSidebar() {
+        return (
             <>
                 <Navbar 
                     username={user.display_name}
@@ -224,34 +178,85 @@ function Dashboard({code}) {
                             toggleView={toggleView}
                         />
                         {displayView()}
-                    </div>
-                    <SearchSidebar 
-                        visible={searchbar}
-                        accessToken={accessToken}
-                        searchState={searchState}
-                        addTrack={addTrack}
-                        addAllTracks={addAllTracks}
-                        removeTrack={removeTrack}
-
-                    />
+                </div>
+                <SearchSidebar 
+                    visible={searchbar}
+                    accessToken={accessToken}
+                    searchState={searchState}
+                    addTrack={addTrack}
+                    addAllTracks={addAllTracks}
+                    removeTrack={removeTrack}
+                />
                 </div>
             </>
+        )
+    }
+
+    function getCurrentUser() {
+        fetch(`https://api.spotify.com/v1/me`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        }).then((response) => response.json())
+        .then((data) => {
+            setUser(data)
+        })
+    }
+    
+    function onLoad() {
+        getCurrentUser()
+    }
+
+    useEffect(() => {
+        if(accessToken) {
+            onLoad()
+        }
+    }, [accessToken])
+
+    useEffect(() => {
+        if(user && user.product !== 'premium') {
+            console.log("Redirect to spotify signup page")
+        } else {
+            console.log("User is premium!")
+        }
+    }, [user])
+
+    useEffect(() => {
+        // console.log("playlists", playlists)
+        // if(playlists.length > 0) {
+        //     // set a playlists so that when you f songs, there is no error, OR, just add error handling when you try to add songs
+        //     setPlaylistID(playlists[0].id)
+        // }
+        
+    }, [playlists])
+
+    useEffect(() => {
+        // console.log("PLAYLIST IN DASHBOARD", playlist)
+    }, [playlistID])
+
+
+    return(
+        <div className="dashboard">
+            {user ? 
+            displayNavAndSidebar()
             :<LoadingView />}
         </div>
     )
 }
 
-function Wrapper(content) {
 
-    function displayContent() {
-        return(
-            {content}
-        )
-    }
-    return(
-        <div className="wrapper">
-            {displayContent()}
-        </div>
-    )
-}
 export default Dashboard
+
+// function Wrapper(content) {
+
+//     function displayContent() {
+//         return(
+//             {content}
+//         )
+//     }
+//     return(
+//         <div className="wrapper">
+//             {displayContent()}
+//         </div>
+//     )
+// }

@@ -31,7 +31,6 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
         return dummyAmount - 1
     }
     function displayGrid() {
-        // console.log("GRID PLAYLISTS", playlists)
         dummyAmount.current = _getDummyAmount()
         return(
             <>
@@ -68,9 +67,6 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
     return(
         <div className="grid-container">
             <div className="grid">
-                {/* <GridCard 
-                    playlist={null} createPlaylist={createPlaylist}
-                    /> */}
                 <AddPlaylistCard 
                     createPlaylist={createPlaylist} 
                     />

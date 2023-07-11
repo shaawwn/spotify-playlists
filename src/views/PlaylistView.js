@@ -6,16 +6,10 @@ import PlaylistBanner from '../components/PlaylistBanner';import PlaylistSetting
 
 
 function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetails, unfollowPlaylist, toggleView}) {
-    // console.log("Playlist and tracks", playlist)
-    // const [playlist] = usePlaylist(accessToken, playlistID)
-    // console.log("Playlist view", playlistID, playlist.id)
 
-    useEffect(() => {
-
-    }, [playlistID])
-
-    return(
-        <div className="playlist">
+    function displayView() {
+        return(
+            <div className="playlist">
             {playlist ? 
             <>
             <PlaylistBanner 
@@ -35,6 +29,16 @@ function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetai
         :<span>No playlist loaded</span>}
 
         </div>
+        )
+    }
+    useEffect(() => {
+
+    }, [playlistID])
+
+    return(
+        <>
+            {displayView()}
+        </>
     )
 }
 

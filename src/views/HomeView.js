@@ -6,14 +6,10 @@ import Grid from '../components/Grid'
 
 function HomeView({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
 
-    useEffect(() => {
-        if(playlists[0]) {
-        //    console.log("Home view loading", playlists[0].name, numPlaylists)  
-        }
-    }, [playlists])
+    function displayView() {
 
-    return(
-        <div className="home" data-testid="home">
+        return(
+            <div className="home" data-testid="home">
             {playlists? 
                 <Grid 
                     playlists={playlists} 
@@ -23,7 +19,19 @@ function HomeView({playlists, scroll, toggleView, createPlaylist, numPlaylists})
                     numPlaylists={numPlaylists}
                     /> 
                 : <h1>No playlists!</h1>}
-        </div>
+            </div>
+        )
+    }
+    useEffect(() => {
+        if(playlists[0]) {
+        //    console.log("Home view loading", playlists[0].name, numPlaylists)  
+        }
+    }, [playlists])
+
+    return(
+        <>
+            {displayView()}
+        </>
     )
 }
 

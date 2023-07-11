@@ -21,7 +21,6 @@ function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, fil
     }, [loading])
 
     function displaySearchResults() {
-        // gonna need something for albums here 
         if(filter === 'tracks') {
             return(
                 <div className="search-results">
