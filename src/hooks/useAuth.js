@@ -8,7 +8,7 @@ import {useState, useEffect, useRef} from 'react';
  * 
  * handleStrict mode handles access/refresh tokens when strict mode re-renders intially, assigning access/refresh tokens based on their previous value. Since this, I think, should only load twice (with strict mode), it should be fine
  */
-// https://throbbing-field-1967.fly.dev/
+// https://throbbing-field-1967.fly.dev/ this doesn't work as is right now because the spotify client ID is incorrect and matched to the other Shawnify app
 function useAuth(code) {
 
     // handle StrictMode
@@ -26,8 +26,8 @@ function useAuth(code) {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3000/login?code=${code}`)
-        // fetch(`https://throbbing-field-1967.fly.dev/login?code=${code}`) // actual server for Auth
+        // fetch(`http://localhost:3000/login?code=${code}`)
+        fetch(`https://throbbing-field-1967.fly.dev/login?code=${code}`) // actual server for Auth
         .then((response) => response.json())
         .then((data) => {
             // console.log("data", data)
@@ -52,8 +52,8 @@ function useAuth(code) {
         if(!refreshToken || !expiresIn) return
 
         const interval = setInterval(() => {
-            fetch(`http://localhost:3001/refresh?refresh_token=${refreshToken}`)
-            // fetch(`https://throbbing-field-1967.fly.dev/refresh?refresh_token=${refreshToken}`)
+            // fetch(`http://localhost:3001/refresh?refresh_token=${refreshToken}`)
+            fetch(`https://throbbing-field-1967.fly.dev/refresh?refresh_token=${refreshToken}`)
             .then((response) => response.json())
             .then((data) => {
                 setAccessToken(data.access_token)
