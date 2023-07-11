@@ -38,7 +38,7 @@ function useAuth(code) {
                 setAccessToken(data.access_token)
                 setRefreshToken(data.refresh_token)
                 setExpiresIn(3600)
-                window.history.pushState({}, null, '/')
+                window.history.pushState({}, null, '/spotify-playlists')
                 strictMode.current = true // so now, when useAuth re-renders, strict mode will be true
             }
         })
