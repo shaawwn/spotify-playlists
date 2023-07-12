@@ -26,8 +26,8 @@ function useAuth(code) {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3000/login?code=${code}`)
-        // fetch(`https://throbbing-field-1967.fly.dev/login?code=${code}`) // actual server for Auth
+        // fetch(`http://localhost:3000/login?code=${code}`)
+        fetch(`https://throbbing-field-1967.fly.dev/login?code=${code}`) // actual server for Auth
         .then((response) => response.json())
         .then((data) => {
             // console.log("data", data)
@@ -52,8 +52,8 @@ function useAuth(code) {
         if(!refreshToken || !expiresIn) return
 
         const interval = setInterval(() => {
-            fetch(`http://localhost:3001/refresh?refresh_token=${refreshToken}`)
-            // fetch(`https://throbbing-field-1967.fly.dev/refresh?refresh_token=${refreshToken}`)
+            // fetch(`http://localhost:3001/refresh?refresh_token=${refreshToken}`)
+            fetch(`https://throbbing-field-1967.fly.dev/refresh?refresh_token=${refreshToken}`)
             .then((response) => response.json())
             .then((data) => {
                 setAccessToken(data.access_token)

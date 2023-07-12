@@ -34,6 +34,10 @@
     margin: auto 20px auto;
 }
 
+.navbar-item {
+    cursor: pointer;
+}
+
 /* || Grid */
 
 .grid-container {
