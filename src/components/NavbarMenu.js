@@ -10,6 +10,10 @@ function NavbarMenu({toggleView, toggleSearchbar}) {
             toggleView('home')
         } else if(option === 'search') {
             toggleSearchbar()
+        } else if(option === 'settngs') {
+            // go to spotify.com/logout
+            console.log("LOUGOUT")
+            window.location.href="https://www.spotify.com/logout"
         }
 
     }
@@ -22,7 +26,7 @@ function NavbarMenu({toggleView, toggleSearchbar}) {
                 icon={faMagnifyingGlass} size="2x"
             />
             <FontAwesomeIcon 
-                icon={faBars} size="2x"
+                icon={faBars} onClick={() => handleClick('settings')}size="2x"
             />
         </div>
     )
