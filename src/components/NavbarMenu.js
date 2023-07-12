@@ -25,7 +25,7 @@ function NavbarMenu({toggleView, toggleSearchbar}) {
         setTimeout(() => {
             console.log("Redirecting to login page after logout")
             window.location.href="https://shaawwn.github.io/spotify-playlists/"
-        }, 1000)
+        }, 500)
     }
     return(
         <div className="navbar-menu">
