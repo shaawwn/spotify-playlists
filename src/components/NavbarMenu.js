@@ -21,11 +21,11 @@ function NavbarMenu({toggleView, toggleSearchbar}) {
 
     function redirectToLogin() {
         console.log("Logging out...")
-        window.location.href="https://www.spotify.com/logout"
-        // setTimeout(() => {
-        //     console.log("Redirecting to login page after logout")
-        //     window.location.href="https://shaawwn.github.io/spotify-playlists/"
-        // }, 500)
+        window.location.href="https://accounts.spotify.com/en/logout"
+        setTimeout(() => {
+            console.log("Redirecting to login page after logout")
+            window.location.href="https://shaawwn.github.io/spotify-playlists/"
+        }, 1000)
     }
     return(
         <div className="navbar-menu">
