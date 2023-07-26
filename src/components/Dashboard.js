@@ -167,8 +167,8 @@ function Dashboard({code}) {
                     toggleView={toggleView}
                     toggleSearchbar={toggleSearchbar} 
                     />
-                <div className="container">
-                    <div className="container-view">
+                <div className="dashboard-main-container">
+                    <div className="dashboard-main-container-view">
                         {/* <HistoryNavigator 
                             history={history}
                             toggleView={toggleView}
