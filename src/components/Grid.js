@@ -21,6 +21,7 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
 
 
     function _getDummyAmount() {
+
         let dummyAmount = 0
         if(numPlaylists % 5 !== 0) {
             while(numPlaylists % 5 !== 0) {
@@ -73,6 +74,9 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
                 {playlists.length > 0 ? displayGrid() : <h1>No playlists!</h1> }
                 {playlists % 5 !== 0 ? 
                     // add dummys
+                    /*
+                        There is an RangeError invalid array length, if new playlists are added.
+                    */
                     [...Array(dummyAmount.current)].map((e, i) => 
                     <GridCard 
                         playlist={null} 
