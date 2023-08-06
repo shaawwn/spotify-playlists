@@ -178,10 +178,6 @@ function Dashboard({code}) {
                             playlists={playlists.slice(0, 5)}
                             toggleView={toggleView}
                         />
-                        {/* <Grid 
-                            playlists={playlists.slice(0, 5)}
-                            toggleView={toggleView}
-                        /> */}
                         {displayView()}
                 </div>
                 <SearchSidebar 
