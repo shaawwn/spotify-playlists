@@ -12,6 +12,7 @@ import Navbar from '../components/Navbar'
 import Shelf from '../components/Shelf'
 import SearchSidebar from '../components/SearchSidebar'
 import HistoryNavigator from '../components/HistoryNavigator';
+import Grid from '../components/Grid'
 
 // views
 import HomeView from '../views/HomeView';
@@ -177,6 +178,10 @@ function Dashboard({code}) {
                             playlists={playlists.slice(0, 5)}
                             toggleView={toggleView}
                         />
+                        {/* <Grid 
+                            playlists={playlists.slice(0, 5)}
+                            toggleView={toggleView}
+                        /> */}
                         {displayView()}
                 </div>
                 <SearchSidebar 
