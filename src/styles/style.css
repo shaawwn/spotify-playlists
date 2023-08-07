@@ -72,10 +72,11 @@ html, body {
 .dashboard {
     background-color: var(--background-main);
     height: 100%;
+    max-width: 100%;
 }
 
 .navbar {
-    width: 100%;
+    max-width: 100%;
     display: flex;
     background-color: var(--background-offblack);
     justify-content: space-between;
@@ -94,16 +95,20 @@ html, body {
 
 .dashboard-main-container {
     display: flex;
-    justify-content: space-between;
+    max-width: 100%;
+    /* justify-content: space-between; */
+    transition: all 0.5s;
 }
 
 .dashboard-main-container-view {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    max-width: 100%;
     gap: 5px;
-    margin: auto;
+    /* margin: auto; */
+    margin: 0 auto;
     padding: 15px;
+    /* transition: all 0.5s; */
 }
 
 /* || Searchbar */
@@ -111,8 +116,24 @@ html, body {
     flex-direction: column;
     overflow-y: scroll;
     background-color: var(--background-input);
-    width: 25%;
+    max-width: 40%;
+    margin-right: 0 auto;
+    /* padding: 1rem; */
+    transition: all 0.2s;
+    animation: fadeInRight 0.5s linear;
 }
+
+@keyframes fadeInRight {
+    0% {
+       opacity: 0;
+       transform: translateX(20px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateX(0);
+    }
+ } 
+
 
 .search-input {
     color: var(--background-black);
@@ -120,6 +141,11 @@ html, body {
     width: 90%;
     margin-right: auto;
     margin-left: auto;
+}
+
+.search-result-row-content {
+    display: flex;
+    justify-content: space-between;
 }
 
 .search-row-btn {
@@ -178,11 +204,11 @@ html, body {
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 5px;
     background-color: var(--background-offblack);
-    width: 80%;
-    margin: auto;
+    /* width: 80%; */
+    /* margin: auto; */
     padding: 1rem;
-    justify-items: center;
-    align-items: center;
+    /* justify-items: center; */
+    /* align-items: center; */
 }
 
 
@@ -204,6 +230,9 @@ html, body {
     /* padding: 1rem; */
 }
 
+.grid-card-image {
+    max-width: 13rem;
+}
 .grid-card-add {
     /* height: 00px; */
 }
