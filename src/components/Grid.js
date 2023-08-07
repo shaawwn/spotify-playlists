@@ -22,6 +22,7 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
 
 
     function _getDummyAmount() {
+
         let dummyAmount = 0
         if(numPlaylists % 5 !== 0) {
             while(numPlaylists % 5 !== 0) {
@@ -31,6 +32,7 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
         }
         return dummyAmount - 1
     }
+
     function displayGrid() {
         dummyAmount.current = _getDummyAmount()
         return(
@@ -58,6 +60,19 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
         )
     }
 
+    function addDummys() {
+
+        playlists % 5 !== 0 ? 
+
+            [...Array(dummyAmount.current)].map((e, i) => 
+            <GridCard 
+                playlist={null} 
+                toggleView={toggleView}
+                key={i}
+                />)
+        :<span></span>
+
+    }
     useEffect(() => {
         if(loading) {
             setLoading(false)
@@ -72,15 +87,14 @@ function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
                     createPlaylist={createPlaylist} 
                     />
                 {playlists.length > 0 ? displayGrid() : <h1>No playlists!</h1> }
-                {playlists % 5 !== 0 ? 
-                    // add dummys
+                {/* {playlists % 5 !== 0 ? 
                     [...Array(dummyAmount.current)].map((e, i) => 
                     <GridCard 
                         playlist={null} 
                         toggleView={toggleView}
                         key={i}
                         />)
-                :<span></span>}
+                :<span></span>} */}
 
             </div>
         </div>

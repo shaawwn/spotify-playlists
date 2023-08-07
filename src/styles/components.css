@@ -34,6 +34,10 @@
     margin: auto 20px auto;
 }
 
+.navbar-item {
+    cursor: pointer;
+}
+
 /* || Grid */
 
 .grid-container {
@@ -102,6 +106,8 @@
     background-color: var(--background-offblack);
     z-index: 5;
 }
+
+
 
 .shelf-card {
     width: 150px;

@@ -14,7 +14,7 @@ function AddPlaylistCard({toggleView, createPlaylist}) {
 
 
     return(
-        <div className="grid-card" onClick={handleClick} >
+        <div className="grid-card grid-card-add" onClick={handleClick} >
             <FontAwesomeIcon icon={faPlus} />
         </div>
     )

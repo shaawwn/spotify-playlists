@@ -22,17 +22,17 @@ function ShelfCard({playlist, toggleView}) {
     function displayCard() {
         // console.log("PLAYLISTS", playlist.images)
         return(
-            <div className="shelf-card" onClick={handleClick}>
+            <div className="grid-card" onClick={handleClick}>
                 {playlist && playlist.images.length > 0 ? 
                     <img 
                         src={playlist.images[0].url} 
-                        className="shelf-card-image" 
+                        className="grid-card-image" 
                         // ref={innerRef}
                         alt={playlist.name}
                     /> 
                     :<p>No image</p>}
             {/* <img src={playlist.images[0].url} className="grid-card-image"/> */}
-            <p className="shelf-card-name">{truncateText(playlist.name)}</p>
+            <p className="grid-card-name">{truncateText(playlist.name)}</p>
         </div>
         )
     }
