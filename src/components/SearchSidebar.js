@@ -5,7 +5,7 @@ import SearchInput from '../components/SearchInput';
 import SearchResults from '../components/SearchResults';
 
 
-function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTracks, removeTrack}) {
+function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTracks, removeTrack, play, pause}) {
 
     const [search, searchResult, setSearchResult] = useSearch(accessToken) // from the searchResult can get ALL search results since it includes the pagination url
     const [tracks, setTracks] = useState()
@@ -96,6 +96,8 @@ function SearchSidebar({visible, accessToken, searchState, addTrack, addAllTrack
                         removeTrack={removeTrack}
                         filter={filter}
                         accessToken={accessToken}
+                        play={play}
+                        pause={pause}
                     />
                     </>
                 )

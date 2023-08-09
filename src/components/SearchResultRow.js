@@ -5,7 +5,7 @@ import SearchAlbum from '../components/SearchAlbum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCaretDown, faCaretRight} from '@fortawesome/free-solid-svg-icons'
 
-function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, albumID, accessToken}) {
+function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, albumID, accessToken, play, pause}) {
 
     const [albumLoad, setAlbumLoad] = useState(false)
 
@@ -53,9 +53,14 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
         }
     }
 
+    function handleTrackClick(e, id, name) {
+        e.stopPropagation()
+        console.log("Clicking", id, name)
+        play(id)
+    }
     function displayRowContent() {
         return(
-            <div className="search-result-row-content">
+            <div className="search-result-row-content" onClick={(e) => handleTrackClick(e,track.id, track.name)}>
                 <div className="search-row-details">
                     <p className="search-row-details-name">{truncateTextLong(track.name)}</p>
                     <p className="search-row-details-artist">{track.artists[0].name}</p>

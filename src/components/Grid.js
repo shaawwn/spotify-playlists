@@ -4,7 +4,7 @@ import GridCard from '../components/GridCard';
 import AddPlaylistCard from '../components/AddPlaylistCard'
 
 function Grid({playlists, scroll, toggleView, createPlaylist, numPlaylists}) {
-    console.log("grid")
+    // console.log("grid")
     const [loading, setLoading] = useState(true) // after content has loaded set to false
     const dummyAmount = useRef(0)
     const observer = useRef()

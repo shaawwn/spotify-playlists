@@ -32,7 +32,7 @@ function isAlphaNumeric(str) {
     // if text > certain length, replace with ellipsis
     // console.log("TRAUNCATED", text)
     
-      let charLimit = 75;
+      let charLimit = 25;
       // if(isAlphaNumeric(text) === false) {
       //   // check for english text, since non-english might be different sizes
       //   charLimit = 30

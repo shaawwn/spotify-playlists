@@ -3,7 +3,7 @@ import {useState, useEffect, useRef, useCallback} from 'react';
 import SearchResultRow from '../components/SearchResultRow'
 
 
-function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, filter, accessToken}) {
+function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, filter, accessToken, play, pause}) {
 
     const [loading, setLoading] = useState(true) // after content has loaded set to false
 
@@ -33,6 +33,8 @@ function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, fil
                                     key={track.id}
                                     addTrack={addTrack}
                                     removeTrack={removeTrack}
+                                    play={play}
+                                    pause={pause}
                                 />
                             )
                         } else {
@@ -42,6 +44,8 @@ function SearchResults({tracks, scroll, addTrack, addAllTracks, removeTrack, fil
                                     key={track.id}
                                     addTrack={addTrack}
                                     removeTrack={removeTrack}
+                                    play={play}
+                                    pause={pause}
                                 />
                             )
                         }

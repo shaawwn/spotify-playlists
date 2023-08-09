@@ -4,8 +4,10 @@ import {useState, useEffect, useRef} from 'react';
 import useAuth from '../hooks/useAuth';
 import usePlaylist from '../hooks/usePlaylist';
 import usePlaylists from '../hooks/usePlaylists'
+import usePlayer from '../hooks/usePlayer';
 import useSearch from '../hooks/useSearch';
 import useHistory from '../hooks/useHistory'
+
 
 //components
 import Navbar from '../components/Navbar'
@@ -28,7 +30,7 @@ function Dashboard({code}) {
     const [user, setUser] = useState()
     const [playlistID, setPlaylistID] = useState()
     const [playlist, addTrack, removeTrack, editDetails, unfollowPlaylist, addAllTracks] = usePlaylist(accessToken, playlistID)
-
+    const[play, pause, previous, next] = usePlayer(accessToken)
     // playlists 
     const refreshPlaylists = useRef(false)
     const [playlists, scroll, numPlaylists] = usePlaylists(accessToken, refreshPlaylists.current)
@@ -187,6 +189,8 @@ function Dashboard({code}) {
                     addTrack={addTrack}
                     addAllTracks={addAllTracks}
                     removeTrack={removeTrack}
+                    play={play}
+                    pause={pause}
                 />
                 </div>
             </>

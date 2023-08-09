@@ -97,7 +97,6 @@ html, body {
     display: flex;
     max-width: 100%;
     /* justify-content: space-between; */
-    transition: all 0.5s;
 }
 
 .dashboard-main-container-view {
@@ -116,9 +115,10 @@ html, body {
     flex-direction: column;
     overflow-y: scroll;
     background-color: var(--background-input);
+    /* min-width: 40%; */
     max-width: 40%;
-    margin-right: 0 auto;
-    /* padding: 1rem; */
+    margin-top: 1rem;
+    padding: 0.125rem;
     transition: all 0.2s;
     animation: fadeInRight 0.5s linear;
 }
@@ -143,11 +143,26 @@ html, body {
     margin-left: auto;
 }
 
-.search-result-row-content {
+.search-result-row {
     display: flex;
     justify-content: space-between;
+    color: var(--font-dark);
+    max-width: 100%;
+    /* background-color: red; */
 }
 
+.search-result-row-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+}
+
+.search-row-details-artist {
+    font-size: 0.75rem;
+}
 .search-row-btn {
     background-color: var(--button-main);
     border-radius: 5px;
@@ -155,6 +170,7 @@ html, body {
     margin: 3px;
     color: var(--font-dark);
     transition: all 0.2s;
+    max-width: 50%;
 }
 
 .search-row-btn:hover {
