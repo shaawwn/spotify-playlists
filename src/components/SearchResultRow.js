@@ -53,14 +53,14 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
         }
     }
 
-    function handleTrackClick(e, id, name) {
+    function handleTrackClick(e, uri) {
         e.stopPropagation()
-        console.log("Clicking", id, name)
-        play(id)
+        console.log("Clicking", uri)
+        play(uri)
     }
     function displayRowContent() {
         return(
-            <div className="search-result-row-content" onClick={(e) => handleTrackClick(e,track.id, track.name)}>
+            <div className="search-result-row-content" onClick={(e) => handleTrackClick(e,track.uri, track.name)}>
                 <div className="search-row-details">
                     <p className="search-row-details-name">{truncateTextLong(track.name)}</p>
                     <p className="search-row-details-artist">{track.artists[0].name}</p>

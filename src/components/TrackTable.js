@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import TrackTableRow from '../components/TrackTableRow'
 
 
-function TrackTable({items, removeTrack}) {
+function TrackTable({items, removeTrack, play, pause, context}) {
 
     // console.log("Table items", items[0])
 
@@ -10,11 +10,15 @@ function TrackTable({items, removeTrack}) {
 
         return(
             <div className="track-table-body">
-                {items.map((item) => 
+                {items.map((item, index) => 
                     <TrackTableRow 
                         key={item.track.id}
                         item={item.track} 
                         removeTrack={removeTrack}
+                        play={play}
+                        pause={pause}
+                        context={context}
+                        offset={index}
                         />
                 )}
             </div>

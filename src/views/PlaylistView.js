@@ -5,7 +5,7 @@ import TrackTable from '../components/TrackTable';
 import PlaylistBanner from '../components/PlaylistBanner';import PlaylistSettings from '../components/PlaylistSettings';
 
 
-function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetails, unfollowPlaylist, toggleView}) {
+function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetails, unfollowPlaylist, toggleView, play, pause}) {
 
     function displayView() {
         return(
@@ -24,6 +24,9 @@ function PlaylistView({accessToken, playlistID, playlist, removeTrack, editDetai
             <TrackTable 
                 items={playlist.tracks.items}
                 removeTrack={removeTrack}
+                play={play}
+                pause={pause}
+                context={playlist}
             />
             </>
         :<span>No playlist loaded</span>}

@@ -16,11 +16,11 @@ function GridCard({playlist, innerRef, toggleView, createPlaylist}) {
 
     function displayCard() {
         return(
-            <div className="grid-card" onClick={handleClick}>
+            <div className="grid-card gs-resp" onClick={handleClick}>
                 {playlist && playlist.images.length > 0 ? 
                     <img 
                         src={playlist.images[0].url} 
-                        className="grid-card-image" 
+                        className="grid-card-image grid-card-image-resp" 
                         ref={innerRef}
                         alt={playlist.name}
                     /> 

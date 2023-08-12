@@ -342,12 +342,46 @@ html, body {
 
 /* Media queries */
 
-@media (max-width: 520px) {
+@media (max-width: 400px) {
 
     .shelf {
         grid-template-columns: auto auto;
     }
+
+
     .grid {
         grid-template-columns: auto auto;
+    }
+
+
+    .grid-card {
+        /* max-width: 5rem; */
+    }
+
+    .grid-card-image {
+        max-width: 10rem;
+    }
+
+    .grid-card-name {
+        font-size: .75rem;
+    }
+
+    .search-sidebar {
+        position: fixed;
+        min-width: 100vw;
+        height: 50%;
+        transition: all 0.2s;
+        animation: fadeInDrop 0.5s linear;
+    }
+
+    @keyframes fadeInDrop {
+        0% {
+            opacity: 0;
+            transform: translatey(20px);
+         }
+         100% {
+            opacity: 1;
+            transform: translatey(0);
+         }
     }
 }

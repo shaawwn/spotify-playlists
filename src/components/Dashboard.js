@@ -144,6 +144,8 @@ function Dashboard({code}) {
                     editDetails={editDetails}
                     unfollowPlaylist={unfollowPlaylist}
                     toggleView={toggleView}
+                    play={play}
+                    pause={pause}
                 />
             )
         } else if(view === 'home') {
