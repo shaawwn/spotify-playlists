@@ -24,7 +24,8 @@ function NavbarMenu({toggleView, toggleSearchbar}) {
         window.location.href="https://accounts.spotify.com/en/logout"
         setTimeout(() => {
             console.log("Redirecting to login page after logout")
-            window.location.href="https://shaawwn.github.io/spotify-playlists/"
+            // window.location.href="https://shaawwn.github.io/spotify-playlists/"
+            window.location.href="http://locahost:3001"
         }, 500)
     }
     return(

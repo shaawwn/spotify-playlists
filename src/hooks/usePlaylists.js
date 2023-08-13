@@ -50,11 +50,13 @@ function usePlaylists(accessToken, refresh) {
             }
         }).then((response) => response.json())
         .then((data) => {
-            // console.log("DATA", data.items)
+            console.log("DATA", data)
             // console.log("Users playlist data", data.total)
             setPlaylists(data.items)
             setNumPlaylists(data.total)
             pagination.current = data.next
+        }).catch((err) => {
+            console.log("There was an error", err)
         })
 
     }

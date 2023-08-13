@@ -145,7 +145,7 @@ function usePlayer(accessToken) {
             }
         })
     }
-    
+
     function pause(id) {
         // can just pause this since the conditions in which you woudl pause don't depend on what the song is
         // (pausing just pauses playback, doesnt need songID or anything else)
@@ -156,6 +156,7 @@ function usePlayer(accessToken) {
     function resume() {
         // TODO handles resume over starting a new track (which requires songID, contextID, etc)
     }
+    
     function next() {
         console.log("Skipping to next")
     }

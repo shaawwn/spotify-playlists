@@ -223,17 +223,17 @@ function Dashboard({code}) {
 
     useEffect(() => {
         if(user && user.product !== 'premium') {
-            console.log("Redirect to spotify signup page")
-            // alert("Only Spotify Premium accounts are can use this app!")
-            const message = "Only Spotify Premium accounts can use this app, would you like to upgrade to premium?"
-            if(window.confirm(message) === true) {
-                window.location.href="https://www.spotify.com/us/premium/"
-            } else {
-                window.location.href="https://www.spotify.com/logout"
-                setTimeout(() => {
-                    window.location.href="https://shaawwn.github.io/spotify-playlists/"
-                }, 500)
-            }
+            // console.log("Redirect to spotify signup page")
+            // // alert("Only Spotify Premium accounts are can use this app!")
+            // const message = "Only Spotify Premium accounts can use this app, would you like to upgrade to premium?"
+            // if(window.confirm(message) === true) {
+            //     window.location.href="https://www.spotify.com/us/premium/"
+            // } else {
+            //     window.location.href="https://www.spotify.com/logout"
+            //     setTimeout(() => {
+            //         window.location.href="https://shaawwn.github.io/spotify-playlists/"
+            //     }, 500)
+            // }
         } else {
             console.log("User is premium!")
         }
