@@ -337,8 +337,18 @@ html, body {
     background-color: var(--background-offblack);
     max-width: 100%;
     padding: .5rem;
+    /* cursor: pointer; */
 }
 
+.track-table-row:hover {
+    cursor: pointer;
+    background-color: var(--background-black-hover);
+}
+
+.track-table-row-active {
+    /* background-color:  */
+    color: var(--button-main);
+}
 
 /* Media queries */
 
