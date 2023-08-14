@@ -70,11 +70,26 @@ html, body {
 /* || dashboard main body */
 
 .dashboard {
-    min-height: 100%;
+    max-height: 100%;
     max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.dashboard-main-container {
+    display: flex;
+    max-width: 100%;
+    overflow: scroll;
+}
+
+.dashboard-main-container-view {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 5px;
+    margin: 0 auto;
+    padding: 15px;
 }
 
 .navbar {
@@ -95,22 +110,6 @@ html, body {
     cursor: pointer;
 }
 
-.dashboard-main-container {
-    display: flex;
-    max-width: 100%;
-    /* justify-content: space-between; */
-}
-
-.dashboard-main-container-view {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    gap: 5px;
-    /* margin: auto; */
-    margin: 0 auto;
-    padding: 15px;
-    /* transition: all 0.5s; */
-}
 
 /* || Searchbar */
 .search-sidebar {
@@ -354,7 +353,7 @@ html, body {
 
 .webplayer {
     max-width: 100%;
-    background-color: var(--background-highlight);
+    background-color: var(--background-offblack);
     display: flex;
     justify-content: center;
     /* padding: .5rem; */
@@ -367,7 +366,7 @@ html, body {
 }
 
 .webplayer-controls-btn {
-    color: var(--font-dark);
+    color: var(--font-main);
     font-size: 3rem;
     margin: 1rem;
 }

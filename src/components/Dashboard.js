@@ -113,6 +113,7 @@ function Dashboard({code}) {
 
 
     function _toggleSearchState() {
+        console.log("toggleing searchbar")
         if(searchState === true) {
             setSearchState(false)
         } else if(searchState === false) {
