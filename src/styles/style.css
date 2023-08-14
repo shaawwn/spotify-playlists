@@ -342,7 +342,7 @@ html, body {
 
 /* Media queries */
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
 
     .shelf {
         grid-template-columns: auto auto;
