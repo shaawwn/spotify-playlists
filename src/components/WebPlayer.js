@@ -109,36 +109,45 @@ function WebPlayer({accessToken, getDevices, devices, changeDevice}) {
         }
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        initPlayer() // need to get devices AFTER init and state set
+    //     initPlayer() // need to get devices AFTER init and state set
 
-        return () => {
-            if(player) {
-                console.log("disconnecting...")
-                disconnectPlayer()
-            }
-        }
-    }, [])
+    //     return () => {
+    //         if(player) {
+    //             console.log("disconnecting...")
+    //             disconnectPlayer()
+    //         }
+    //     }
+    // }, [])
     
-    useEffect(() => {
-        // getDevices()
-        // getDevices()
-        console.log(playerChange)
-        // getDevices()
-    }, [playerChange])
+    // useEffect(() => {
+    //     // getDevices()
+    //     // getDevices()
+    //     console.log(playerChange)
+    //     // getDevices()
+    // }, [playerChange])
 
     
     return(
         <div className="webplayer">
-            <div className="webplayer-controls">
-                <FontAwesomeIcon icon={faBackward} className="webplayer-controls-btn"/>
-                <FontAwesomeIcon icon={faPlay} 
-                className="webplayer-controls-btn"/>
-                <FontAwesomeIcon icon={faForward} className="webplayer-controls-btn"/>
+            <div className="webplayer-wrapper">
+                <div className="webplayer-details">
+                    <p>Details</p>
+                </div>
             </div>
-            <div className="webplayer-settings">
-                <FontAwesomeIcon icon={faLaptop} className="webplayer-controls-btn" onClick={toggleDeviceMenu}/>
+            <div className="webplayer-wrapper">
+                <div className="webplayer-controls">
+                    <FontAwesomeIcon icon={faBackward} className="webplayer-controls-btn"/>
+                    <FontAwesomeIcon icon={faPlay} 
+                    className="webplayer-controls-btn"/>
+                    <FontAwesomeIcon icon={faForward} className="webplayer-controls-btn"/>
+                </div>
+            </div>
+            <div className="webplayer-wrapper">
+                <div className="webplayer-settings">
+                    <FontAwesomeIcon icon={faLaptop} className="webplayer-controls-btn" onClick={toggleDeviceMenu}/>
+                </div>
             </div>
             {deviceMenu === true ? displayDeviceMenu() : <span></span>}
         </div>
