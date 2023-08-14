@@ -18,7 +18,7 @@ const code = new URLSearchParams(window.location.search).get('code')
 function App() {
 
   useEffect(() => {
-    console.log("Loading app")
+    // console.log("Loading app")
     // initialize the player here?
   }, [])
 

@@ -337,6 +337,7 @@ html, body {
     background-color: var(--background-offblack);
     max-width: 100%;
     padding: .5rem;
+    /* cursor: pointer; */
 }
 
 
