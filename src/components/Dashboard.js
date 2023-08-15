@@ -188,6 +188,16 @@ function Dashboard({code}) {
                         />
                         {displayView()}
                     </div>
+                        <SearchSidebar 
+                        visible={searchbar}
+                        accessToken={accessToken}
+                        searchState={searchState}
+                        addTrack={addTrack}
+                        addAllTracks={addAllTracks}
+                        removeTrack={removeTrack}
+                        play={play}
+                        pause={pause}
+                    />
                 </div>
                 <WebPlayer />
             </div>

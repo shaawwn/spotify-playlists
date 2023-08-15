@@ -78,35 +78,36 @@ function usePlayer(accessToken) {
     }
 
     function checkPlaybackState(uri, context) {
-        // when selecting a track, check for existing playback and pause, start, resume as needed
-        console.log("Checking playback of uri and context", uri, context)
-
-        // if uri = null, then playing from playlist/album
         fetch(`https://api.spotify.com/v1/me/player`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
-        }).then((response) => response.json())
-        .then((data) => {
-            // check is_playing true ? pause : play
-            // also check that the track is the same as the one being played? If
-            console.log("Current playback state", data, data.is_playing, data.item.name)
+        }).then((response) => {
+            if(!response.ok) {
+                throw new Error("there was a problem")
+            } else {
+                response.json()
+            }
+        }).then((data) => {
+            if(data === undefined) {
+                throw new Error("Response undefined")
+            }
             if(data.is_playing === true) {
                 console.log("Should pause")
-                // _apiPause()
             } else if(data.is_playing === false) {
                 console.log("Should play")
-                // _apiResume()
             }
+        }).catch((err) => {
+            console.log("Reached error log", err)
         })
-
     }
+
 
     function play(uri, context, offset) {
 
         // console.log("Playing track", uri, context)
         // getPlaybackState() // check what the current playback is, if playing, pause, if not, play
-        checkPlaybackState(uri, context)
+        checkPlaybackState(uri, context) // so this actually works its the next lines of code that bugger up
         if(uri) {
             _playFromUri(uri)
         } else if(context) {
@@ -114,6 +115,7 @@ function usePlayer(accessToken) {
         }
     }
 
+    // maybe run the same checks, but handle in promise?
     function _playFromContext(context, offset) {
         fetch(`https://api.spotify.com/v1/me/player/play`,{
             method: "PUT",
