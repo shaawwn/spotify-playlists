@@ -102,8 +102,36 @@ function usePlayer(accessToken) {
         })
     }
 
-
     function play(uri, context, offset) {
+        fetch(`https://api.spotify.com/v1/me/player`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        }).then((response) => {
+            if(!response.ok) {
+                throw new Error ("There was a problem with the response")
+            } else if(response.status === 204){
+                throw new Error("No active playback")
+            } else (response.json()) 
+        }).then((data) => {
+            if(data === undefined) {
+                throw new Error("Undefined response from server")
+            }
+            if(data.is_playing === true) {
+                console.log("Should pause")
+            } else if(data.is_playing === false) {
+                console.log("Should play")
+                if(uri) {
+                    _playFromUri(uri)
+                } else if(context) {
+                    _playFromContext(context, offset)
+                }
+            }
+        }).catch((err) => {
+            console.log("Error: ", err)
+        })
+    }
+    function _play(uri, context, offset) {
 
         // console.log("Playing track", uri, context)
         // getPlaybackState() // check what the current playback is, if playing, pause, if not, play
