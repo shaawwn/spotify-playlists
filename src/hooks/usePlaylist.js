@@ -155,7 +155,7 @@ function usePlaylist(accessToken, id) {
             }
         }).then((response) => response.json())
         .then((data) => {
-            console.log("Playlist data", data)
+            // console.log("Playlist data", data)
             setPlaylist(data)
         })
     }

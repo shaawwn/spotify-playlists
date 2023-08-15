@@ -9,17 +9,26 @@ function usePlayer(accessToken) {
     const [devices, setDevices] = useState()
     const [playState, setPlaystate] = useState(false)
 
+
     function getDevices() {
+        console.log("Getting devices")
         fetch(`https://api.spotify.com/v1/me/player/devices`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         }).then((response) => response.json())
         .then((data) => {
-            console.log("Devices: ", data)
             // set active device and devices
-            const isActive = data.devices.filter((device) => device.is_active === true)
-            setActiveDevice(isActive)
+            const isActive = data.devices.filter((device) => device.is_active === true) //defaults activeDevice if device currently active
+            if(isActive.length > 0) {
+                setActiveDevice(isActive[0])
+            } else if(isActive.length === 0 && data.devices.length > 0) {
+                setActiveDevice(data.devices[0])
+            } else {
+                // alert("There are no active devices, you must open the spotify app to play control content.")
+                // throw new Error("There are no playable devices")
+            }
+            // setActiveDevice(isActive)
             setDevices(data.devices)
         })
     }
@@ -102,6 +111,14 @@ function usePlayer(accessToken) {
         })
     }
 
+    function startPlayback(uri, context, offset) {
+        // start playback if no state exists
+        if(uri) {
+            _playFromUri(uri)
+        } else if(context) {
+            _playFromContext(context, offset)
+        }
+    }
     function play(uri, context, offset) {
         fetch(`https://api.spotify.com/v1/me/player`, {
             headers: {
@@ -111,41 +128,30 @@ function usePlayer(accessToken) {
             if(!response.ok) {
                 throw new Error ("There was a problem with the response")
             } else if(response.status === 204){
-                throw new Error("No active playback")
-            } else (response.json()) 
-        }).then((data) => {
-            if(data === undefined) {
-                throw new Error("Undefined response from server")
-            }
-            if(data.is_playing === true) {
-                console.log("Should pause")
-            } else if(data.is_playing === false) {
-                console.log("Should play")
-                if(uri) {
-                    _playFromUri(uri)
-                } else if(context) {
-                    _playFromContext(context, offset)
+                if(inActiveDevice() != false) {
+                    console.log("!!!!", inActiveDevice())
+                    startPlayback(uri, context, offset)
                 }
-            }
+            } else if(response.status === 200) {
+                if(inActiveDevice() != false) {
+                    startPlayback(uri, context, offset)
+                }
+            }else (response.json()) 
         }).catch((err) => {
             console.log("Error: ", err)
         })
     }
-    function _play(uri, context, offset) {
 
-        // console.log("Playing track", uri, context)
-        // getPlaybackState() // check what the current playback is, if playing, pause, if not, play
-        checkPlaybackState(uri, context) // so this actually works its the next lines of code that bugger up
-        if(uri) {
-            _playFromUri(uri)
-        } else if(context) {
-            _playFromContext(context, offset)
+    function inActiveDevice() {
+        // return false for an inactive device, as error handling to prevent fetch api on undefined devices 
+        if(activeDevice === undefined){
+            return false
         }
     }
 
     // maybe run the same checks, but handle in promise?
     function _playFromContext(context, offset) {
-        fetch(`https://api.spotify.com/v1/me/player/play`,{
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${activeDevice.id}`,{
             method: "PUT",
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -153,15 +159,17 @@ function usePlayer(accessToken) {
             body: JSON.stringify({context_uri: context, offset: {position: offset}})
         }).then((response) => {
             if(!response.ok) {
-                throw new Error("There was a problem starting the song", response)
+                throw new Error("There was a problem starting the song from context", response)
             } else {
                 console.log("Starting track")
             }
+        }).catch((err) => {
+            console.log("Err in context", err, context, offset, activeDevice)
         })
     }
 
     function _playFromUri(uri) {
-        fetch(`https://api.spotify.com/v1/me/player/play`,{
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${activeDevice.id}`,{
             method: "PUT",
             headers: {
                 'Authorization': `Bearer ${accessToken}`
