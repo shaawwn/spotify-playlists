@@ -267,7 +267,6 @@ html, body {
     padding: 1rem;
     gap: 3rem;
     border-bottom: 1px solid var(--font-main);
-
 }
 
 .playlist-banner-image {
@@ -450,4 +449,21 @@ html, body {
             transform: translatey(0);
          }
     }
+
+    .playlist-banner {
+        max-height: 15rem;
+    }
+    
+    .playlist-banner-image {
+        max-width: 10rem;
+        max-height: 10rem;
+    }
+    
+    
+    .playlist-banner-title {
+        margin-top: 0px;
+        /* font-size: 2rem; */
+        font-size: clamp(0.5em, 1rem, 2rem);
+    }
+        
 }
