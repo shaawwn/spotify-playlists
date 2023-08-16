@@ -181,36 +181,36 @@ html, body {
 /* || shelf */
 
 .shelf {
-    display: grid;
+    /* display: grid;
     grid-template-columns: auto auto auto auto auto;
     padding: 1.5rem;
     background-color: var(--background-offblack);
-    background-color: rgb(0,0,0)
+    background-color: rgb(0,0,0) */
 }
 
 .shelf-card {
-    border-radius: 5px;
+    /* border-radius: 5px;
     background-color: var(--background-black);
     max-width: 11rem;
     padding: 5px;
-    transition: all 0.5s;
+    transition: all 0.5s; */
 }
 
 .shelf-card-name {
-    color: var(--font-main);
-    font-size: 1.125rem;
+    /* color: var(--font-main);
+    font-size: 1.125rem; */
 }
 
 .shelf-card-image {
-    margin: auto;
-    border-radius: 5px;
+    /* margin: auto;
+    border-radius: 5px; */
 }
 
 .shelf-card:hover {
-    background-color: var(--background-black-hover);
+    /* background-color: var(--background-black-hover);
     transform: scale(1.4) translateY(1.5rem);
     box-shadow: 1px 1px .75rem rgba(40, 40, 40, 0.5);
-    z-index: 11;
+    z-index: 11; */
 }
 
 /* || grid */
@@ -409,9 +409,7 @@ html, body {
 
 @media (max-width: 400px) {
 
-    .shelf {
-        grid-template-columns: auto auto;
-    }
+
 
 
     .grid {
@@ -429,6 +427,25 @@ html, body {
 
     .grid-card-name {
         font-size: .75rem;
+    }
+
+    .shelf {
+        /* grid-template-columns: auto auto; */
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .shelf-card {
+        max-width: 5rem;
+    }
+
+    .shelf-card-name {
+        font-size: 0rem;
+    }
+    .shelf-card-image {
+        max-width: 3.5rem;
+        /* max-height: 2rem; */
+
     }
 
     .search-sidebar {
