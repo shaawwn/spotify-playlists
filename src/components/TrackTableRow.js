@@ -33,8 +33,7 @@ function TrackTableRow({item, removeTrack, play, pause, context, offset}) {
 
                 <div className="track-table-cell flex-end">
                     <p style={{'margin-top': 'auto', 'margin-bottom': 'auto'}}>{msToMinutesAndSeconds(item.duration_ms)}</p>
-                    <FontAwesomeIcon    className="track-table-delete" icon={faTrash} 
-                    />
+                    <FontAwesomeIcon className="track-table-delete" icon={faTrash} onClick={(e) => handleButtonClick(e, item.id)}/>
                 </div>
             </div>
         )

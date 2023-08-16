@@ -251,6 +251,13 @@ html, body {
 }
 .grid-card-add {
     /* height: 00px; */
+    text-align: center;
+    padding-top: 27%;
+}
+
+.grid-card-add > svg {
+    /* margin: auto; */
+    
 }
 
 .grid-card:hover {
@@ -388,7 +395,7 @@ html, body {
 
 .webplayer-controls-btn {
     color: var(--font-main);
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 1rem;
 }
 
@@ -409,8 +416,19 @@ html, body {
 
 @media (max-width: 400px) {
 
+    .webplayer {
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+        max-height: 3rem;
+    }
 
-
+    .webplayer-settings {
+        padding-top: 5%;
+    }
+    .fa-laptop {
+        font-size: 2rem;
+        /* background-color: green; */
+    }
 
     .grid {
         grid-template-columns: auto auto;
@@ -459,7 +477,7 @@ html, body {
     @keyframes fadeInDrop {
         0% {
             opacity: 0;
-            transform: translatey(20px);
+            transform: translatey(-20px);
          }
          100% {
             opacity: 1;

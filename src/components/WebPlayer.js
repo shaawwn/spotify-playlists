@@ -109,6 +109,9 @@ function WebPlayer({accessToken, getDevices, devices, changeDevice}) {
         }
     }
 
+    function dummyClick() {
+        alert("I don't do anything yet!")
+    }
     // useEffect(() => {
 
     //     initPlayer() // need to get devices AFTER init and state set
@@ -138,15 +141,15 @@ function WebPlayer({accessToken, getDevices, devices, changeDevice}) {
             </div>
             <div className="webplayer-wrapper">
                 <div className="webplayer-controls">
-                    <FontAwesomeIcon icon={faBackward} className="webplayer-controls-btn"/>
-                    <FontAwesomeIcon icon={faPlay} 
+                    <FontAwesomeIcon onClick={dummyClick} icon={faBackward} className="webplayer-controls-btn"/>
+                    <FontAwesomeIcon onClick={dummyClick} icon={faPlay} 
                     className="webplayer-controls-btn"/>
-                    <FontAwesomeIcon icon={faForward} className="webplayer-controls-btn"/>
+                    <FontAwesomeIcon onClick={dummyClick} icon={faForward} className="webplayer-controls-btn"/>
                 </div>
             </div>
             <div className="webplayer-wrapper">
                 <div className="webplayer-settings">
-                    <FontAwesomeIcon icon={faLaptop} className="webplayer-controls-btn" onClick={toggleDeviceMenu}/>
+                    <FontAwesomeIcon icon={faLaptop} className="webplayer-controls-btn" onClick={dummyClick}/>
                 </div>
             </div>
             {deviceMenu === true ? displayDeviceMenu() : <span></span>}
