@@ -15,6 +15,7 @@ import Shelf from '../components/Shelf'
 import SearchSidebar from '../components/SearchSidebar'
 import HistoryNavigator from '../components/HistoryNavigator';
 import Grid from '../components/Grid'
+import WebPlayer from '../components/WebPlayer';
 
 // views
 import HomeView from '../views/HomeView';
@@ -112,6 +113,7 @@ function Dashboard({code}) {
 
 
     function _toggleSearchState() {
+        console.log("toggleing searchbar")
         if(searchState === true) {
             setSearchState(false)
         } else if(searchState === false) {
@@ -164,6 +166,43 @@ function Dashboard({code}) {
         }
     }
 
+    function displayDashboard() {
+        // dashboard is display Flex in columns with nav, body, and player at top, middle, and bottom respectively
+        return(
+            <div className="dashboard">
+                <Navbar 
+                    username={user.display_name}
+                    toggleView={toggleView}
+                    toggleSearchbar={toggleSearchbar}
+                />
+                {/* Main body */}
+                <div className="dashboard-main-container">
+                    <div className="dashboard-main-container-view">
+                        {/* <HistoryNavigator 
+                            history={history}
+                            toggleView={toggleView}
+                            /> */}
+                        <Shelf 
+                            playlists={playlists.slice(0, 5)}
+                            toggleView={toggleView}
+                        />
+                        {displayView()}
+                    </div>
+                        <SearchSidebar 
+                        visible={searchbar}
+                        accessToken={accessToken}
+                        searchState={searchState}
+                        addTrack={addTrack}
+                        addAllTracks={addAllTracks}
+                        removeTrack={removeTrack}
+                        play={play}
+                        pause={pause}
+                    />
+                </div>
+                <WebPlayer />
+            </div>
+        )
+    }
     function displayNavAndSidebar() {
         return (
             <>
@@ -195,6 +234,7 @@ function Dashboard({code}) {
                     pause={pause}
                 />
                 </div>
+                {/* <WebPlayer /> */}
             </>
         )
     }
@@ -254,11 +294,16 @@ function Dashboard({code}) {
 
 
     return(
-        <div className="dashboard">
+        // <div className="dashboard">
+        //     {user ? 
+        //     displayNavAndSidebar()
+        //     :<LoadingView />}
+        // </div>
+        <>
             {user ? 
-            displayNavAndSidebar()
+            displayDashboard()
             :<LoadingView />}
-        </div>
+        </>
     )
 }
 

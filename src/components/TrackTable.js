@@ -37,7 +37,7 @@ function TrackTable({items, removeTrack, play, pause, context}) {
         <>
             <div className="track-table">
                 {/* <div style={{textAlign: 'left'}}> */}
-                    <div className="track-table-head">
+                    {/* <div className="track-table-head">
                         <div className="track-table-cell-name">
                             <p>Name</p>
                         </div>
@@ -53,7 +53,7 @@ function TrackTable({items, removeTrack, play, pause, context}) {
                         <div className="track-table-cell">
                             <p>Update</p>
                         </div>
-                    </div>
+                    </div> */}
                 {/* </div> */}
                 {items.length > 0 ? displayTable() : displayEmptyTable()}
             </div>    

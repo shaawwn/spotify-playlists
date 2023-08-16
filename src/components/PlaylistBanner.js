@@ -45,10 +45,9 @@ function PlaylistBanner({name, owner, numTracks, image, editDetails, unfollowPla
                 {displayImage()}
                 <div className="playlist-banner-subcontainer">
                     <p className="playlist-banner-title">{name}</p>
-                    <p>{owner}</p>
                     <p>Total tracks {numTracks}</p>
                     <button className="playlist-banner-btn" onClick={() => setEdit(true)}>Edit playlist</button>
-                    <button className="playlist-banner-btn" onClick={handleUnfollow} style={{backgroundColor: 'red'}}>Unfollow</button>
+                    <button className="playlist-banner-btn" onClick={handleUnfollow} style={{backgroundColor: '#c16666', color: '#e9edf7'}}>Unfollow</button>
                 </div>
 
             </>

@@ -15,6 +15,7 @@
     --font-dark: #332f2f;
     --font-secondary: #332f2f;  
     --background-input: #cfd5e0;
+    --warning:#c16666;
     background-color: var(--background-main);
 }
 
@@ -70,9 +71,25 @@ html, body {
 /* || dashboard main body */
 
 .dashboard {
-    background-color: var(--background-main);
-    height: 100%;
+    max-height: 100%;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-main-container {
+    display: flex;
+    max-width: 100%;
+    overflow: scroll;
+}
+
+.dashboard-main-container-view {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 5px;
+    margin: 0 auto;
+    padding: 15px;
 }
 
 .navbar {
@@ -81,6 +98,7 @@ html, body {
     background-color: var(--background-offblack);
     justify-content: space-between;
     color: var(--font-main);
+    padding: 0.5rem;
 }
 
 .navbar-menu {
@@ -93,31 +111,13 @@ html, body {
     cursor: pointer;
 }
 
-.dashboard-main-container {
-    display: flex;
-    max-width: 100%;
-    /* justify-content: space-between; */
-}
-
-.dashboard-main-container-view {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    gap: 5px;
-    /* margin: auto; */
-    margin: 0 auto;
-    padding: 15px;
-    /* transition: all 0.5s; */
-}
 
 /* || Searchbar */
 .search-sidebar {
     flex-direction: column;
     overflow-y: scroll;
     background-color: var(--background-input);
-    /* min-width: 40%; */
     max-width: 40%;
-    margin-top: 1rem;
     padding: 0.125rem;
     transition: all 0.2s;
     animation: fadeInRight 0.5s linear;
@@ -181,36 +181,36 @@ html, body {
 /* || shelf */
 
 .shelf {
-    display: grid;
+    /* display: grid;
     grid-template-columns: auto auto auto auto auto;
     padding: 1.5rem;
     background-color: var(--background-offblack);
-    background-color: rgb(0,0,0)
+    background-color: rgb(0,0,0) */
 }
 
 .shelf-card {
-    border-radius: 5px;
+    /* border-radius: 5px;
     background-color: var(--background-black);
     max-width: 11rem;
     padding: 5px;
-    transition: all 0.5s;
+    transition: all 0.5s; */
 }
 
 .shelf-card-name {
-    color: var(--font-main);
-    font-size: 1.125rem;
+    /* color: var(--font-main);
+    font-size: 1.125rem; */
 }
 
 .shelf-card-image {
-    margin: auto;
-    border-radius: 5px;
+    /* margin: auto;
+    border-radius: 5px; */
 }
 
 .shelf-card:hover {
-    background-color: var(--background-black-hover);
+    /* background-color: var(--background-black-hover);
     transform: scale(1.4) translateY(1.5rem);
     box-shadow: 1px 1px .75rem rgba(40, 40, 40, 0.5);
-    z-index: 11;
+    z-index: 11; */
 }
 
 /* || grid */
@@ -251,6 +251,13 @@ html, body {
 }
 .grid-card-add {
     /* height: 00px; */
+    text-align: center;
+    padding-top: 27%;
+}
+
+.grid-card-add > svg {
+    /* margin: auto; */
+    
 }
 
 .grid-card:hover {
@@ -267,7 +274,6 @@ html, body {
     padding: 1rem;
     gap: 3rem;
     border-bottom: 1px solid var(--font-main);
-
 }
 
 .playlist-banner-image {
@@ -325,30 +331,104 @@ html, body {
 .track-table-cell {
     text-align: left;
     width: 100%;
+    display: flex;
 }
 
-.track-table-cell-name {
-    width: 350%;
+.flex-end {
+    justify-content: flex-end;
+    gap: 3rem;
 }
+
 
 .track-table-row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: var(--background-offblack);
     max-width: 100%;
     padding: .5rem;
     /* cursor: pointer; */
 }
 
+.track-table-row:hover {
+    cursor: pointer;
+    background-color: var(--background-black-hover);
+}
 
+.track-table-row-active {
+    /* background-color:  */
+    color: var(--button-main);
+}
+
+.track-table-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-table-details-artist {
+    font-size: .75rem;
+    font-weight: lighter;
+}
+
+.track-table-delete {
+    /* color: var(--warning); */
+    font-size: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: var(--warning);
+    border-radius: 5px;
+    padding: .5rem;
+}
+
+.webplayer {
+    max-width: 100%;
+    background-color: var(--background-offblack);
+    display: flex;
+    justify-content: center;
+    /* padding: .5rem; */
+}
+
+.webplayer-controls {
+    display: flex;
+    justify-content: space-between;
+    /* width: 30%; */
+}
+
+.webplayer-controls-btn {
+    color: var(--font-main);
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.webplayer-details {
+    /* width: 30%; */
+}
+
+.webplayer-settings {
+    /* width: 30%; */
+}
+
+.webplayer-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 /* Media queries */
 
 @media (max-width: 420px) {
 
-    .shelf {
-        grid-template-columns: auto auto;
+    .webplayer {
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+        max-height: 3rem;
     }
 
+    .webplayer-settings {
+        padding-top: 5%;
+    }
+    .fa-laptop {
+        font-size: 2rem;
+        /* background-color: green; */
+    }
 
     .grid {
         grid-template-columns: auto auto;
@@ -367,6 +447,25 @@ html, body {
         font-size: .75rem;
     }
 
+    .shelf {
+        /* grid-template-columns: auto auto; */
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .shelf-card {
+        max-width: 5rem;
+    }
+
+    .shelf-card-name {
+        font-size: 0rem;
+    }
+    .shelf-card-image {
+        max-width: 3.5rem;
+        /* max-height: 2rem; */
+
+    }
+
     .search-sidebar {
         position: fixed;
         min-width: 100vw;
@@ -378,11 +477,28 @@ html, body {
     @keyframes fadeInDrop {
         0% {
             opacity: 0;
-            transform: translatey(20px);
+            transform: translatey(-20px);
          }
          100% {
             opacity: 1;
             transform: translatey(0);
          }
     }
+
+    .playlist-banner {
+        max-height: 15rem;
+    }
+    
+    .playlist-banner-image {
+        max-width: 10rem;
+        max-height: 10rem;
+    }
+    
+    
+    .playlist-banner-title {
+        margin-top: 0px;
+        /* font-size: 2rem; */
+        font-size: clamp(0.5em, 1rem, 2rem);
+    }
+        
 }

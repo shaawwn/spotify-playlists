@@ -58,6 +58,7 @@ function SearchResultRow({track, innerRef, addTrack, addAllTracks, removeTrack, 
         console.log("Clicking", uri)
         play(uri)
     }
+    
     function displayRowContent() {
         return(
             <div className="search-result-row-content" onClick={(e) => handleTrackClick(e,track.uri, track.name)}>

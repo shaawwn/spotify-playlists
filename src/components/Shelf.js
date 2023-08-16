@@ -20,7 +20,7 @@ function Shelf({playlists, toggleView}) {
         )
     }
     return(
-        <div className="grid responsive">
+        <div className="grid responsive shelf">
             {playlists ? displayShelf() : <h1>No shelf items!</h1>}
         </div>
     )
