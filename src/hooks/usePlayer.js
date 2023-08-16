@@ -86,30 +86,30 @@ function usePlayer(accessToken) {
         })
     }
 
-    function checkPlaybackState(uri, context) {
-        fetch(`https://api.spotify.com/v1/me/player`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        }).then((response) => {
-            if(!response.ok) {
-                throw new Error("there was a problem")
-            } else {
-                response.json()
-            }
-        }).then((data) => {
-            if(data === undefined) {
-                throw new Error("Response undefined")
-            }
-            if(data.is_playing === true) {
-                console.log("Should pause")
-            } else if(data.is_playing === false) {
-                console.log("Should play")
-            }
-        }).catch((err) => {
-            console.log("Reached error log", err)
-        })
-    }
+    // function checkPlaybackState(uri, context) {
+    //     fetch(`https://api.spotify.com/v1/me/player`, {
+    //         headers: {
+    //             'Authorization': `Bearer ${accessToken}`
+    //         }
+    //     }).then((response) => {
+    //         if(!response.ok) {
+    //             throw new Error("there was a problem")
+    //         } else {
+    //             response.json()
+    //         }
+    //     }).then((data) => {
+    //         if(data === undefined) {
+    //             throw new Error("Response undefined")
+    //         }
+    //         if(data.is_playing === true) {
+    //             console.log("Should pause")
+    //         } else if(data.is_playing === false) {
+    //             console.log("Should play")
+    //         }
+    //     }).catch((err) => {
+    //         console.log("Reached error log", err)
+    //     })
+    // }
 
     function startPlayback(uri, context, offset) {
         // start playback if no state exists
@@ -119,7 +119,10 @@ function usePlayer(accessToken) {
             _playFromContext(context, offset)
         }
     }
+
     function play(uri, context, offset) {
+        // need to check for active playing, and pause if that is the case
+        console.log('....')
         fetch(`https://api.spotify.com/v1/me/player`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -129,7 +132,6 @@ function usePlayer(accessToken) {
                 throw new Error ("There was a problem with the response")
             } else if(response.status === 204){
                 if(inActiveDevice() != false) {
-                    console.log("!!!!", inActiveDevice())
                     startPlayback(uri, context, offset)
                 }
             } else if(response.status === 200) {
@@ -137,6 +139,9 @@ function usePlayer(accessToken) {
                     startPlayback(uri, context, offset)
                 }
             }else (response.json()) 
+            .then((data) => {
+                console.log("DATAAAAAA", data)
+            })
         }).catch((err) => {
             console.log("Error: ", err)
         })
