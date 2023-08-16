@@ -15,6 +15,7 @@
     --font-dark: #332f2f;
     --font-secondary: #332f2f;  
     --background-input: #cfd5e0;
+    --warning:#c16666;
     background-color: var(--background-main);
 }
 
@@ -97,6 +98,7 @@ html, body {
     background-color: var(--background-offblack);
     justify-content: space-between;
     color: var(--font-main);
+    padding: 0.5rem;
 }
 
 .navbar-menu {
@@ -115,9 +117,7 @@ html, body {
     flex-direction: column;
     overflow-y: scroll;
     background-color: var(--background-input);
-    /* min-width: 40%; */
     max-width: 40%;
-    margin-top: 1rem;
     padding: 0.125rem;
     transition: all 0.2s;
     animation: fadeInRight 0.5s linear;
@@ -325,15 +325,18 @@ html, body {
 .track-table-cell {
     text-align: left;
     width: 100%;
+    display: flex;
 }
 
-.track-table-cell-name {
-    width: 350%;
+.flex-end {
+    justify-content: flex-end;
+    gap: 3rem;
 }
+
 
 .track-table-row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: var(--background-offblack);
     max-width: 100%;
     padding: .5rem;
@@ -348,6 +351,26 @@ html, body {
 .track-table-row-active {
     /* background-color:  */
     color: var(--button-main);
+}
+
+.track-table-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-table-details-artist {
+    font-size: .75rem;
+    font-weight: lighter;
+}
+
+.track-table-delete {
+    /* color: var(--warning); */
+    font-size: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: var(--warning);
+    border-radius: 5px;
+    padding: .5rem;
 }
 
 .webplayer {
