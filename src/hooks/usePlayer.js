@@ -136,7 +136,7 @@ function usePlayer(accessToken) {
                     console.log("Before startplayback function")
                     startPlayback(uri, context, offset)
                 }
-                console.log("playing but not premium account", response)
+                console.log("playing but not premium account", activeDevice)
                 startPlayback(uri, context, offset)
             } else if(response.status === 200) {
                 if(inActiveDevice() != false) {
