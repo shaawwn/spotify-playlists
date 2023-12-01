@@ -29,7 +29,7 @@ function usePlayer(accessToken) {
                 // throw new Error("There are no playable devices")
             }
             // setActiveDevice(isActive)
-            console.log("Setting devices", data.devices)
+            console.log("Setting devices", data.devices, data)
             setDevices(data.devices)
         }).catch((err) => {
             console.log("There was an error getting devices", err)
